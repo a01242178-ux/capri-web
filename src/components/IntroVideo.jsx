@@ -2,16 +2,21 @@ import { useEffect, useRef, useState } from 'react'
 import './IntroVideo.css'
 
 /**
- * Scroll-driven video intro.
- * A tall wrapper creates scroll distance; inside, a sticky video fills the viewport.
- * As the user scrolls through the wrapper, video.currentTime is mapped to scroll progress.
- * When the wrapper is fully scrolled past, the next section (Hero with ribeyes) appears.
+ * Scroll-driven video intro with smooth interpolation.
+ *
+ * Architecture:
+ * - Wrapper 250vh (200vh mobile) creates scroll distance
+ * - Sticky child fills 100vh while parent scrolls
+ * - scroll → targetProgress (0..1)
+ * - continuous rAF lerps currentProgress toward targetProgress
+ * - video.currentTime only seeks when the delta > epsilon
+ * - uses fastSeek() when available (Safari) for fluid keyframe seeks
  */
 export default function IntroVideo() {
   const wrapperRef = useRef(null)
   const videoRef = useRef(null)
-  const [ready, setReady] = useState(false)
   const [progress, setProgress] = useState(0)
+  const [primed, setPrimed] = useState(false)
 
   useEffect(() => {
     const video = videoRef.current
@@ -19,35 +24,59 @@ export default function IntroVideo() {
     if (!video || !wrapper) return
 
     let rafId = null
+    let targetProgress = 0
+    let currentProgress = 0
+    let lastSeekTime = -1
 
-    const update = () => {
+    const computeTarget = () => {
       const rect = wrapper.getBoundingClientRect()
       const total = rect.height - window.innerHeight
-      // How far we've scrolled into the wrapper, normalized 0..1
-      const pct = Math.min(1, Math.max(0, -rect.top / Math.max(1, total)))
+      targetProgress = Math.min(1, Math.max(0, -rect.top / Math.max(1, total)))
+    }
+
+    const tick = () => {
+      // Lerp toward target. 0.12 gives a responsive-but-smooth trail.
+      currentProgress += (targetProgress - currentProgress) * 0.12
+
       if (video.duration && !Number.isNaN(video.duration)) {
-        video.currentTime = pct * video.duration
+        const desired = currentProgress * video.duration
+        // Only seek when meaningful delta — avoids decoder thrash
+        if (Math.abs(desired - lastSeekTime) > 0.03) {
+          if (typeof video.fastSeek === 'function') {
+            video.fastSeek(desired)
+          } else {
+            video.currentTime = desired
+          }
+          lastSeekTime = desired
+        }
       }
-      setProgress(pct)
+
+      setProgress(currentProgress)
+      rafId = requestAnimationFrame(tick)
     }
 
-    const onScroll = () => {
-      if (rafId) return
-      rafId = requestAnimationFrame(() => {
-        rafId = null
-        update()
-      })
+    const onScroll = () => { computeTarget() }
+    const onLoadedMeta = () => {
+      setPrimed(true)
+      // Prime the decoder: play a tiny moment then pause so the first seek isn't cold
+      video.play().then(() => video.pause()).catch(() => {})
+      computeTarget()
+      currentProgress = targetProgress
+      if (!rafId) rafId = requestAnimationFrame(tick)
     }
 
-    const onLoaded = () => setReady(true)
-    video.addEventListener('loadedmetadata', onLoaded)
+    // Handle case where metadata is already loaded by the time we attach
+    if (video.readyState >= 1 /* HAVE_METADATA */) {
+      onLoadedMeta()
+    } else {
+      video.addEventListener('loadedmetadata', onLoadedMeta)
+    }
     window.addEventListener('scroll', onScroll, { passive: true })
     window.addEventListener('resize', onScroll, { passive: true })
-    // Initial sync in case page loads mid-scroll
-    onScroll()
+    computeTarget()
 
     return () => {
-      video.removeEventListener('loadedmetadata', onLoaded)
+      video.removeEventListener('loadedmetadata', onLoadedMeta)
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', onScroll)
       if (rafId) cancelAnimationFrame(rafId)
@@ -61,6 +90,16 @@ export default function IntroVideo() {
       aria-label="Carnicero Capri Carnes"
     >
       <div className="intro-video__sticky">
+        {/* Top band — real Capri logo */}
+        <div className="intro-video__lockup">
+          <img
+            src="/images/capri-logo.jpg"
+            alt="Capri Carnes"
+            className="intro-video__logo"
+            loading="eager"
+          />
+        </div>
+
         <video
           ref={videoRef}
           className="intro-video__media"
@@ -72,23 +111,25 @@ export default function IntroVideo() {
           controls={false}
           aria-hidden="true"
         />
-        {/* Dark overlay that deepens near the end for smooth handoff to next section */}
+
+        {/* Bottom band — tagline + scroll cue */}
+        <div className={`intro-video__bottom ${progress > 0.04 ? 'is-hidden' : ''}`}>
+          <div className="intro-video__tagline">
+            Desde 1960 · La carne que Juárez conoce
+          </div>
+          <div className="intro-video__cue" aria-hidden="true">
+            <span>Scroll</span>
+            <span className="intro-video__cue-line" />
+          </div>
+        </div>
+
+        {/* Fade-to-white veil at end for smooth handoff */}
         <div
           className="intro-video__veil"
-          style={{ opacity: Math.max(0, (progress - 0.72) / 0.28) * 0.85 }}
+          style={{ opacity: Math.max(0, (progress - 0.7) / 0.3) * 0.95 }}
         />
 
-        {/* Brand lockup — styled wordmark over the video (logo JPG has white bg, so we use text here) */}
-        <div className="intro-video__lockup">
-          <span className="intro-video__wordmark">
-            capri<span className="intro-video__wordmark-dot">.</span>
-          </span>
-        </div>
-
-        <div className={`intro-video__cue ${progress > 0.05 ? 'is-hidden' : ''}`} aria-hidden="true">
-          <span>Scroll</span>
-          <span className="intro-video__cue-line" />
-        </div>
+        {!primed && <div className="intro-video__loading">Cargando…</div>}
       </div>
     </section>
   )

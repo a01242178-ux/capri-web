@@ -4,10 +4,8 @@
 .intro-video {
   position: relative;
   width: 100%;
-  /* 250vh → 150vh of scroll distance after accounting for the sticky viewport
-     Tune this to adjust how long the carnicero video takes to play through */
   height: 250vh;
-  background: #0a0a0a;
+  background: #fff;
 }
 
 .intro-video__sticky {
@@ -16,95 +14,125 @@
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background: #0a0a0a;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2vh 16px;
+  gap: 1vh;
 }
 
 .intro-video__media {
-  position: absolute;
-  inset: 0;
+  flex: 1 1 auto;
+  min-height: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  /* Desktop: contain (keeps full carnicero visible on wide viewports) */
+  object-fit: contain;
   object-position: center;
   pointer-events: none;
-  background: #0a0a0a;
+  display: block;
+}
+
+/* Mobile portrait: cover to crop the video's generous white padding and fill the screen */
+@media (max-aspect-ratio: 1 / 1) {
+  .intro-video__media {
+    object-fit: cover;
+  }
 }
 
 .intro-video__veil {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0) 55%, #0a0a0a 100%);
+  background: linear-gradient(180deg, rgba(255,255,255,0) 45%, rgba(255,255,255,0.7) 80%, #fff 100%);
   pointer-events: none;
   transition: opacity 120ms linear;
 }
 
+/* Top band — real Capri logo */
 .intro-video__lockup {
-  position: absolute;
-  left: 50%;
-  top: 6vh;
-  transform: translateX(-50%);
-  pointer-events: none;
+  flex: 0 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.45));
+  width: 100%;
+  max-width: 560px;
+  pointer-events: none;
 }
 
-.intro-video__wordmark {
+.intro-video__logo {
+  width: 100%;
+  height: auto;
+  max-height: 10vh;
+  object-fit: contain;
+  display: block;
+}
+
+/* Bottom band — tagline + scroll cue */
+.intro-video__bottom {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  pointer-events: none;
+  transition: opacity 500ms ease-out, transform 500ms ease-out;
+  opacity: 1;
+}
+
+.intro-video__bottom.is-hidden {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.intro-video__tagline {
   font-family: 'Montserrat', system-ui, sans-serif;
-  font-weight: 900;
-  font-style: normal;
-  font-size: clamp(28px, 3vw, 44px);
-  letter-spacing: -0.035em;
-  line-height: 1;
-  text-transform: lowercase;
-  color: #fff;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55);
-  display: inline-flex;
-  align-items: baseline;
-}
-
-.intro-video__wordmark-dot {
-  color: #B0000B;
-  margin-left: 0.02em;
+  font-weight: 600;
+  font-size: clamp(12px, 1.3vw, 16px);
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: #0a0a0a;
+  text-align: center;
 }
 
 /* Scroll cue — hint to the user that they should scroll */
 .intro-video__cue {
-  position: absolute;
-  bottom: 6vh;
-  left: 50%;
-  transform: translateX(-50%);
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(0, 0, 0, 0.55);
   font-family: 'Montserrat', system-ui, sans-serif;
   font-weight: 500;
-  font-size: 11px;
+  font-size: 10px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
-  text-shadow: 0 2px 14px rgba(0,0,0,0.65);
-  transition: opacity 400ms ease-out, transform 400ms ease-out;
+  gap: 10px;
   animation: cuePulse 2.4s ease-in-out infinite;
-}
-
-.intro-video__cue.is-hidden {
-  opacity: 0;
-  transform: translateX(-50%) translateY(8px);
-  animation: none;
 }
 
 .intro-video__cue-line {
   width: 1px;
-  height: 40px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0) 100%);
+  height: 32px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0) 100%);
 }
 
 @keyframes cuePulse {
-  0%, 100% { opacity: 0.75; transform: translateX(-50%) translateY(0) }
-  50%      { opacity: 1;    transform: translateX(-50%) translateY(6px) }
+  0%, 100% { opacity: 0.7; transform: translateY(0) }
+  50%      { opacity: 1;   transform: translateY(4px) }
+}
+
+.intro-video__loading {
+  position: absolute;
+  bottom: 10vh;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(0, 0, 0, 0.55);
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  pointer-events: none;
 }
 
 @media (max-width: 640px) {
