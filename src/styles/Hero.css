@@ -3,25 +3,44 @@
   min-height: 88vh;
   display: flex;
   align-items: flex-end;
-  background: url('/images/fotos/dsc0017-web.jpg') center 30% / cover no-repeat;
   overflow: hidden;
 }
 
-.hero::after {
-  content: '';
+/* ── Parallax background ─────────────────────────── */
+
+.hero__bg {
+  position: absolute;
+  /* 20% extra space top+bottom for parallax travel */
+  inset: -20% 0;
+  z-index: 0;
+}
+
+.hero__bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  display: block;
+  will-change: transform;
+}
+
+.hero__overlay {
   position: absolute;
   inset: 0;
+  z-index: 1;
   background: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.18) 0%,
-    rgba(0, 0, 0, 0.55) 60%,
+    rgba(0, 0, 0, 0.15) 0%,
+    rgba(0, 0, 0, 0.5) 55%,
     rgba(0, 0, 0, 0.82) 100%
   );
 }
 
+/* ── Content ─────────────────────────────────────── */
+
 .hero__content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
@@ -38,6 +57,8 @@
   margin: 0 0 20px;
 }
 
+/* ── Title split-char animation ─────────────────── */
+
 .hero__title {
   font-family: 'Montserrat', system-ui, sans-serif;
   font-weight: 900;
@@ -49,6 +70,17 @@
   color: #fff;
   margin: 0 0 28px;
 }
+
+.hero__line {
+  display: block;
+}
+
+/* inline-block required for GSAP translateY on individual chars */
+.hero__char {
+  display: inline-block;
+}
+
+/* ── Body copy + CTA ─────────────────────────────── */
 
 .hero__sub {
   font-family: 'Montserrat', system-ui, sans-serif;
@@ -79,18 +111,10 @@
   box-shadow: 0 14px 36px rgba(176, 0, 11, 0.4);
 }
 
+/* ── Mobile ──────────────────────────────────────── */
+
 @media (max-width: 768px) {
-  .hero {
-    min-height: 75vh;
-    align-items: flex-end;
-  }
-
-  .hero__title {
-    font-size: clamp(44px, 12vw, 70px);
-  }
-
-  .hero__sub {
-    font-size: 14px;
-    max-width: 100%;
-  }
+  .hero { min-height: 75vh; }
+  .hero__title { font-size: clamp(44px, 12vw, 70px); }
+  .hero__sub { font-size: 14px; max-width: 100%; }
 }

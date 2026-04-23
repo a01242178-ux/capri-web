@@ -1,4 +1,9 @@
+import { useEffect, useRef } from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import '../styles/ProductGrid.css'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const products = [
   { id: 1, name: 'Ribeye', tagline: 'Premium · Marmoleado', image: '/images/fotos/dsc0017-web.jpg' },
@@ -10,8 +15,68 @@ const products = [
 ]
 
 export default function ProductGrid() {
+  const sectionRef = useRef(null)
+  const gridRef = useRef(null)
+
+  useEffect(() => {
+    const section = sectionRef.current
+    const grid = gridRef.current
+    if (!section || !grid) return
+
+    const mm = gsap.matchMedia()
+
+    mm.add('(prefers-reduced-motion: no-preference)', () => {
+      // Intro text fade up
+      gsap.from(section.querySelector('.product-grid__intro'), {
+        opacity: 0,
+        y: 40,
+        duration: 0.7,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 80%',
+          toggleActions: 'play none none none',
+        }
+      })
+
+      // Cards: clip-path wipe reveal + opacity, stagger per card
+      const cards = grid.querySelectorAll('.product-card')
+      gsap.from(cards, {
+        clipPath: 'inset(0 100% 0 0)',
+        opacity: 0,
+        stagger: {
+          each: 0.08,
+          grid: 'auto',
+          from: 'start',
+        },
+        duration: 0.65,
+        ease: 'power2.inOut',
+        scrollTrigger: {
+          trigger: grid,
+          start: 'top 82%',
+          toggleActions: 'play none none none',
+        }
+      })
+
+      // CTA fade up
+      gsap.from(section.querySelector('.product-grid__cta'), {
+        opacity: 0,
+        y: 24,
+        duration: 0.6,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: section.querySelector('.product-grid__cta'),
+          start: 'top 90%',
+          toggleActions: 'play none none none',
+        }
+      })
+    })
+
+    return () => mm.revert()
+  }, [])
+
   return (
-    <section className="product-grid" id="products">
+    <section ref={sectionRef} className="product-grid" id="products">
       <div className="product-grid__intro">
         <div className="product-grid__eyebrow">Nuestros productos</div>
         <h2 className="product-grid__title">
@@ -23,9 +88,9 @@ export default function ProductGrid() {
         </p>
       </div>
 
-      <div className="product-grid__grid">
-        {products.map((p, i) => (
-          <article className="product-card" key={p.id} data-reveal data-delay={String((i % 3) + 1)}>
+      <div ref={gridRef} className="product-grid__grid">
+        {products.map((p) => (
+          <article className="product-card" key={p.id}>
             <div className="product-card__media">
               <img src={p.image} alt={p.name} loading="lazy" />
               <div className="product-card__grad" />
