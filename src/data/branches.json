@@ -1,0 +1,146 @@
+[
+  {
+    "id": 1,
+    "name": "Sucursal Primavera",
+    "address": "Calle José María Morelos #535, Col. Barrio Alto, Juárez, Chih.",
+    "phone": "(656) 219-1234",
+    "hours": "8:00 - 18:00",
+    "coords": [28.6330, -106.4245],
+    "image": "/images/sucursal-primavera.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Sucursal Centro",
+    "address": "Avenida 16 de Septiembre #1000, Centro, Juárez, Chih.",
+    "phone": "(656) 219-5678",
+    "hours": "8:00 - 19:00",
+    "coords": [28.6365, -106.4160],
+    "image": "/images/sucursal-centro.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Sucursal Zona Este",
+    "address": "Boulevard Paso del Norte #2500, Zona Este, Juárez, Chih.",
+    "phone": "(656) 219-9012",
+    "hours": "8:00 - 18:00",
+    "coords": [28.6150, -106.3700],
+    "image": "/images/sucursal-este.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Sucursal Del Valle",
+    "address": "Calle Volcán Nevado #345, Del Valle, Juárez, Chih.",
+    "phone": "(656) 219-3456",
+    "hours": "8:00 - 18:00",
+    "coords": [28.6450, -106.4500],
+    "image": "/images/sucursal-valle.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Sucursal Zona Oeste",
+    "address": "Avenida Mariano Matamoros #890, Zona Oeste, Juárez, Chih.",
+    "phone": "(656) 219-7890",
+    "hours": "8:00 - 18:00",
+    "coords": [28.6200, -106.5000],
+    "image": "/images/sucursal-oeste.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Sucursal Porvenir",
+    "address": "Calle Principal #123, Porvenir, Juárez, Chih.",
+    "phone": "(656) 219-2345",
+    "hours": "8:00 - 17:00",
+    "coords": [28.6100, -106.4300],
+    "image": "/images/sucursal-porvenir.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Sucursal Pronaf",
+    "address": "Blvd. Pronaf #567, Pronaf, Juárez, Chih.",
+    "phone": "(656) 219-6789",
+    "hours": "8:00 - 18:00",
+    "coords": [28.6700, -106.3900],
+    "image": "/images/sucursal-pronaf.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Sucursal Bravos",
+    "address": "Avenida Tecnológico #234, Bravos, Juárez, Chih.",
+    "phone": "(656) 219-0123",
+    "hours": "8:00 - 18:00",
+    "coords": [28.6550, -106.4100],
+    "image": "/images/sucursal-bravos.jpg"
+  },
+  {
+    "id": 9,
+    "name": "Sucursal Ampliación Cosmopolita",
+    "address": "Calle Cosmopolita #678, Ampliación, Juárez, Chih.",
+    "phone": "(656) 219-4567",
+    "hours": "8:00 - 18:00",
+    "coords": [28.6400, -106.3950],
+    "image": "/images/sucursal-cosmopolita.jpg"
+  },
+  {
+    "id": 10,
+    "name": "Sucursal San Felipe",
+    "address": "Boulevard San Felipe #912, San Felipe, Juárez, Chih.",
+    "phone": "(656) 219-8901",
+    "hours": "8:00 - 18:00",
+    "coords": [28.6250, -106.4550],
+    "image": "/images/sucursal-sanfelipe.jpg"
+  },
+  {
+    "id": 11,
+    "name": "Sucursal Las Torres",
+    "address": "Avenida Las Torres #456, Las Torres, Juárez, Chih.",
+    "phone": "(656) 219-1234",
+    "hours": "8:00 - 18:00",
+    "coords": [28.6600, -106.4400],
+    "image": "/images/sucursal-torres.jpg"
+  },
+  {
+    "id": 12,
+    "name": "Sucursal Panamericana",
+    "address": "Carretera Panamericana #789, Panamericana, Juárez, Chih.",
+    "phone": "(656) 219-5678",
+    "hours": "8:00 - 18:00",
+    "coords": [28.6300, -106.3850],
+    "image": "/images/sucursal-panamericana.jpg"
+  },
+  {
+    "id": 13,
+    "name": "Sucursal Guadalupe",
+    "address": "Calle Guadalupe #234, Guadalupe, Juárez, Chih.",
+    "phone": "(656) 219-9012",
+    "hours": "8:00 - 18:00",
+    "coords": [28.6450, -106.3700],
+    "image": "/images/sucursal-guadalupe.jpg"
+  },
+  {
+    "id": 14,
+    "name": "Sucursal Cacho",
+    "address": "Avenida Cacho #567, Cacho, Juárez, Chih.",
+    "phone": "(656) 219-3456",
+    "hours": "8:00 - 18:00",
+    "coords": [28.6050, -106.4450],
+    "image": "/images/sucursal-cacho.jpg"
+  },
+  {
+    "id": 15,
+    "name": "Sucursal Zaragoza",
+    "address": "Boulevard Zaragoza #890, Zaragoza, Juárez, Chih.",
+    "phone": "(656) 219-7890",
+    "hours": "8:00 - 18:00",
+    "coords": [28.6550, -106.4900],
+    "image": "/images/sucursal-zaragoza.jpg"
+  },
+  {
+    "id": 16,
+    "name": "Sucursal Aeropuerto",
+    "address": "Avenida Tecnológico Near Aeropuerto #123, Aeropuerto, Juárez, Chih.",
+    "phone": "(656) 219-2345",
+    "hours": "8:00 - 17:00",
+    "coords": [28.6700, -106.4300],
+    "image": "/images/sucursal-aeropuerto.jpg"
+  }
+]

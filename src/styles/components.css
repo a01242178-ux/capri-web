@@ -1,0 +1,120 @@
+/* Buttons */
+.btn {
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background-color: var(--color-red-capri);
+  color: var(--color-white);
+}
+
+.btn-primary:hover {
+  background-color: #8B0008;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(176, 0, 11, 0.3);
+}
+
+.btn-secondary {
+  background-color: var(--color-mustard);
+  color: var(--color-black);
+}
+
+.btn-secondary:hover {
+  background-color: #B59E00;
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 2px solid var(--color-red-capri);
+  color: var(--color-red-capri);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-red-capri);
+  color: var(--color-white);
+}
+
+.btn-cta {
+  background-color: var(--color-red-capri);
+  color: var(--color-white);
+}
+
+.btn-cta:hover {
+  background-color: #8B0008;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(176, 0, 11, 0.3);
+}
+
+/* Input fields */
+.input {
+  width: 100%;
+  padding: var(--spacing-sm);
+  font-size: 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-family: inherit;
+  transition: border-color 0.3s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-red-capri);
+  box-shadow: 0 0 0 3px rgba(176, 0, 11, 0.1);
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 var(--spacing-sm);
+  }
+}
+
+/* Identity Band */
+.identity-band {
+  background-color: var(--color-beige);
+  border-top: 2px solid var(--color-red-capri);
+  border-bottom: 2px solid var(--color-red-capri);
+  padding: var(--spacing-xl) var(--spacing-md);
+  text-align: center;
+  margin: var(--spacing-2xl) 0;
+}
+
+.brand-phrase {
+  font-family: var(--font-primary);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-black);
+  margin: var(--spacing-sm) 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.social-links {
+  font-size: 14px;
+  margin-top: var(--spacing-md);
+}
+
+.social-links a {
+  color: var(--color-red-capri);
+  font-weight: 600;
+  transition: opacity 0.3s;
+}
+
+.social-links a:hover {
+  opacity: 0.8;
+}

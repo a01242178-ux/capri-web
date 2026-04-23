@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "name": "COSTILLA DE RES",
+    "price": 299.99,
+    "unit": "KG",
+    "image": "/images/costilla-main.jpg",
+    "imageThumbnail": "/images/costilla-thumb.jpg",
+    "description": "Corte premium, jugoso y tierno. Ideal para asar."
+  },
+  {
+    "id": 2,
+    "name": "TIRA DE ASADO",
+    "price": 249.99,
+    "unit": "KG",
+    "image": "/images/tira-main.jpg",
+    "imageThumbnail": "/images/tira-thumb.jpg",
+    "description": "Excelente para parrilla, sabor intenso y jugoso."
+  },
+  {
+    "id": 3,
+    "name": "FILETE",
+    "price": 399.99,
+    "unit": "KG",
+    "image": "/images/filete-main.jpg",
+    "imageThumbnail": "/images/filete-thumb.jpg",
+    "description": "Premium, tierno y delicado. Lujo asegurado."
+  },
+  {
+    "id": 4,
+    "name": "CARNE MOLIDA",
+    "price": 189.99,
+    "unit": "KG",
+    "image": "/images/molida-main.jpg",
+    "imageThumbnail": "/images/molida-thumb.jpg",
+    "description": "Fresca, magra y lista para preparar."
+  },
+  {
+    "id": 5,
+    "name": "PECHUGA DE POLLO",
+    "price": 129.99,
+    "unit": "KG",
+    "image": "/images/pollo-main.jpg",
+    "imageThumbnail": "/images/pollo-thumb.jpg",
+    "description": "Proteína magra, tierna y versátil."
+  },
+  {
+    "id": 6,
+    "name": "CHULETAS DE CERDO",
+    "price": 219.99,
+    "unit": "KG",
+    "image": "/images/chuletas-main.jpg",
+    "imageThumbnail": "/images/chuletas-thumb.jpg",
+    "description": "Jugosas y sabrosas, perfectas para la parrilla."
+  }
+]

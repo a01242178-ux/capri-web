@@ -1,0 +1,248 @@
+/* ==========================================================
+   IntroOpcion2 — brand.io applied to Capri
+   Signature: lowercase "capri." with red dot on pure black/white
+   3 beats: mark on black → rancho → carne → header
+   ========================================================== */
+
+.intro-op2 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  background: #0a0a0a;
+  overflow: hidden;
+  color: #fff;
+  font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+  animation: op2FadeIn 360ms ease-out both;
+}
+
+.intro-op2.is-leaving {
+  animation: op2FadeOut 480ms cubic-bezier(0.7, 0, 0.84, 0) forwards;
+}
+
+@keyframes op2FadeIn { from { opacity: 0 } to { opacity: 1 } }
+@keyframes op2FadeOut { 0% { opacity: 1 } 100% { opacity: 0 } }
+
+/* -----------------------------------------------------------
+   SCENE FRAMES — fullscreen photos, fade in on cue
+   ----------------------------------------------------------- */
+.intro-op2__frame {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  will-change: opacity, transform;
+  transition: opacity 900ms ease-out;
+}
+
+.intro-op2__frame--rancho {
+  background-image: url('/images/fotos/rancho.jpg');
+  transform-origin: 55% 50%;
+}
+
+.intro-op2__frame--carne {
+  background-image: url('/images/fotos/dsc0001-web.jpg');
+  transform-origin: 50% 50%;
+}
+
+/* Phase 2 — rancho visible */
+.intro-op2.phase-2 .intro-op2__frame--rancho,
+.intro-op2.phase-3 .intro-op2__frame--rancho { opacity: 0 }
+.intro-op2.phase-2 .intro-op2__frame--rancho { opacity: 1; animation: kenburns 3.5s ease-out forwards }
+
+/* Phase 3 — carne visible */
+.intro-op2.phase-3 .intro-op2__frame--carne,
+.intro-op2.phase-4 .intro-op2__frame--carne { opacity: 1; animation: kenburnsClose 3s ease-out forwards }
+
+/* Phase 4 — darken carne as backdrop to header transition */
+.intro-op2.phase-4 .intro-op2__frame--carne { opacity: 0.45; filter: brightness(0.6) }
+
+@keyframes kenburns {
+  0%   { transform: scale(1.05) translate3d(0, 0, 0) }
+  100% { transform: scale(1.14) translate3d(-1.5%, -1%, 0) }
+}
+@keyframes kenburnsClose {
+  0%   { transform: scale(1.02) translate3d(0, 0, 0) }
+  100% { transform: scale(1.10) translate3d(0, -1%, 0) }
+}
+
+/* Bottom readability gradient — only visible on photo phases */
+.intro-op2__vignette {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,0.72) 100%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 500ms ease-out;
+  z-index: 2;
+}
+.intro-op2.phase-2 .intro-op2__vignette,
+.intro-op2.phase-3 .intro-op2__vignette { opacity: 1 }
+
+/* -----------------------------------------------------------
+   MAIN MARK — "capri." centered big on black (phase 1),
+   then becomes a small mark in the header position (phase 4)
+   ----------------------------------------------------------- */
+.intro-op2__mark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: baseline;
+  font-weight: 900;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  text-transform: lowercase;
+  color: #fff;
+  font-size: clamp(90px, 16vw, 260px);
+  opacity: 0;
+  z-index: 4;
+  transition: opacity 500ms ease-out;
+  white-space: nowrap;
+}
+
+.intro-op2__mark-dot {
+  color: #B0000B;
+  margin-left: 0.02em;
+}
+
+/* Phase 1 — mark fades in on black */
+.intro-op2.phase-1 .intro-op2__mark,
+.intro-op2.phase-2 .intro-op2__mark,
+.intro-op2.phase-3 .intro-op2__mark { opacity: 0 }
+.intro-op2.phase-1 .intro-op2__mark {
+  opacity: 1;
+  animation: markEntry 900ms cubic-bezier(0.2, 0.9, 0.3, 1) 150ms both;
+}
+
+@keyframes markEntry {
+  0%   { opacity: 0; letter-spacing: 0.02em; transform: translate(-50%, -50%) scale(0.96) }
+  100% { opacity: 1; letter-spacing: -0.035em; transform: translate(-50%, -50%) scale(1) }
+}
+
+/* Phase 4 — mark morphs to header-top-left position + size */
+.intro-op2.phase-4 .intro-op2__mark {
+  animation: markSettle 1.4s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+@keyframes markSettle {
+  0% {
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: clamp(90px, 16vw, 260px);
+    opacity: 0;
+  }
+  18% { opacity: 1 }
+  100% {
+    top: 28px; left: calc(max((100vw - 1200px) / 2 + 24px, 24px));
+    transform: translate(0, 0);
+    font-size: 38px;
+    opacity: 1;
+  }
+}
+
+/* -----------------------------------------------------------
+   CORNER LABEL "capri." — shows during photo phases (brand.io signature)
+   ----------------------------------------------------------- */
+.intro-op2__corner {
+  position: absolute;
+  top: 28px;
+  left: calc(max((100vw - 1200px) / 2 + 24px, 24px));
+  display: flex;
+  align-items: baseline;
+  font-weight: 800;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  text-transform: lowercase;
+  color: #fff;
+  opacity: 0;
+  z-index: 3;
+  transition: opacity 400ms ease-out;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.55);
+}
+.intro-op2__corner-dot {
+  color: #B0000B;
+  margin-left: 0.05em;
+}
+.intro-op2.phase-2 .intro-op2__corner,
+.intro-op2.phase-3 .intro-op2__corner { opacity: 1 }
+.intro-op2.phase-4 .intro-op2__corner { opacity: 0 }
+
+/* -----------------------------------------------------------
+   TAGLINES — one per photo phase, bottom-center
+   ----------------------------------------------------------- */
+.intro-op2__tagline {
+  position: absolute;
+  bottom: 10vh;
+  left: 50%;
+  transform: translateX(-50%) translateY(16px);
+  font-weight: 500;
+  font-size: clamp(14px, 1.3vw, 18px);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.92);
+  opacity: 0;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.7);
+  z-index: 3;
+  white-space: nowrap;
+  transition: opacity 600ms ease-out, transform 600ms cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+
+.intro-op2.phase-2 .intro-op2__tagline--rancho {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  transition-delay: 400ms;
+}
+.intro-op2.phase-3 .intro-op2__tagline--carne {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  transition-delay: 250ms;
+}
+
+/* -----------------------------------------------------------
+   SKIP BUTTON — minimal, bottom-right
+   ----------------------------------------------------------- */
+.intro-op2__skip {
+  position: absolute;
+  bottom: 28px;
+  right: 28px;
+  padding: 10px 22px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 2px;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  z-index: 5;
+  transition: all 200ms ease-out;
+}
+.intro-op2__skip:hover {
+  border-color: #fff;
+  color: #fff;
+}
+
+@media (max-width: 640px) {
+  .intro-op2__mark { font-size: clamp(64px, 22vw, 140px) }
+  .intro-op2__corner { top: 20px; left: 18px; font-size: 18px }
+  .intro-op2__tagline { font-size: 12px; letter-spacing: 0.24em; padding: 0 6vw }
+  .intro-op2__skip { bottom: 20px; right: 18px; padding: 8px 16px; font-size: 11px }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-op2,
+  .intro-op2__frame,
+  .intro-op2__mark,
+  .intro-op2__corner,
+  .intro-op2__tagline { animation: none !important; transition: none !important }
+}

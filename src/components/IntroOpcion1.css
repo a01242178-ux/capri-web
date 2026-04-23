@@ -1,0 +1,153 @@
+.intro-brand {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  background: #0a0a0a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  overflow: hidden;
+  cursor: pointer;
+  animation: introFadeIn 320ms ease-out both;
+}
+
+.intro-brand.is-leaving {
+  animation: introFadeOut 600ms cubic-bezier(0.7, 0, 0.84, 0) forwards;
+}
+
+@keyframes introFadeIn {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+@keyframes introFadeOut {
+  0%   { opacity: 1; transform: scale(1) }
+  100% { opacity: 0; transform: scale(1.08) }
+}
+
+.intro-brand__eyebrow {
+  position: absolute;
+  top: 8vh;
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-weight: 500;
+  font-size: clamp(11px, 1.1vw, 14px);
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: eyebrowIn 700ms cubic-bezier(0.2, 0.9, 0.3, 1) 200ms forwards;
+}
+
+@keyframes eyebrowIn {
+  to { opacity: 1; transform: translateY(0) }
+}
+
+.intro-brand__title {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 0.82;
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-weight: 900;
+  font-style: italic;
+  font-size: clamp(80px, 22vw, 340px);
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  user-select: none;
+  pointer-events: none;
+}
+
+.intro-brand__word {
+  display: block;
+  background-image: url('/images/fotos/dsc0001-web.jpg');
+  background-size: cover;
+  background-position: center;
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  filter: contrast(1.08) saturate(1.15);
+  will-change: transform, background-position, opacity;
+}
+
+.intro-brand__word--one {
+  opacity: 0;
+  transform: translateY(40px) scale(1.05);
+  animation:
+    wordOneIn 900ms cubic-bezier(0.2, 0.9, 0.3, 1) 500ms forwards,
+    wordPan 4s ease-in-out 500ms forwards;
+}
+
+.intro-brand__word--two {
+  opacity: 0;
+  transform: translateY(40px) scale(1.05);
+  animation:
+    wordTwoIn 900ms cubic-bezier(0.2, 0.9, 0.3, 1) 1200ms forwards,
+    wordPan 4s ease-in-out 1200ms forwards;
+  margin-top: -0.08em;
+}
+
+@keyframes wordOneIn {
+  to { opacity: 1; transform: translateY(0) scale(1) }
+}
+@keyframes wordTwoIn {
+  to { opacity: 1; transform: translateY(0) scale(1) }
+}
+@keyframes wordPan {
+  0%   { background-position: 50% 40%; background-size: 110% auto }
+  100% { background-position: 50% 60%; background-size: 125% auto }
+}
+
+.intro-brand__tagline {
+  position: absolute;
+  bottom: 10vh;
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-weight: 400;
+  font-size: clamp(12px, 1.2vw, 16px);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+  opacity: 0;
+  animation: taglineIn 800ms ease-out 2100ms forwards;
+}
+
+@keyframes taglineIn {
+  to { opacity: 1 }
+}
+
+.intro-brand__skip {
+  position: absolute;
+  bottom: 2.5vh;
+  right: 3vw;
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  opacity: 0;
+  animation: taglineIn 600ms ease-out 2600ms forwards;
+}
+
+@media (max-width: 640px) {
+  .intro-brand__eyebrow { top: 10vh; letter-spacing: 0.35em }
+  .intro-brand__tagline { bottom: 12vh; letter-spacing: 0.2em }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-brand,
+  .intro-brand__eyebrow,
+  .intro-brand__word--one,
+  .intro-brand__word--two,
+  .intro-brand__tagline,
+  .intro-brand__skip {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+  }
+}
