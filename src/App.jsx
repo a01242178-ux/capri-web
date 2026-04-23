@@ -53,10 +53,10 @@ export default function App() {
       <IntroVideo />
       <Header />
       <Hero />
-      <Historia />
       <Timeline />
       <ProductGrid />
       <BranchMap />
+      <Historia />
       <Footer />
       <WhatsAppButton />
     </div>
