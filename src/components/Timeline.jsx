@@ -26,14 +26,23 @@ export default function Timeline() {
       </div>
 
       <div className="timeline__track">
-        {milestones.map((m, i) => (
-          <article key={i} className="timeline__node" data-reveal data-delay={String((i % 4) + 1)}>
-            <div className="timeline__year">{m.year}</div>
-            <div className="timeline__bar" />
-            <h3 className="timeline__node-title">{m.title}</h3>
-            <p className="timeline__node-text">{m.text}</p>
-          </article>
-        ))}
+        {milestones.map((m, i) => {
+          const isLast = i === milestones.length - 1
+          return (
+            <article
+              key={i}
+              className={`timeline__node${isLast ? ' timeline__node--hoy' : ''}`}
+              data-reveal
+              data-delay={String((i % 3) + 1)}
+            >
+              <div className="timeline__year">{m.year}</div>
+              <div className="timeline__content">
+                <h3 className="timeline__node-title">{m.title}</h3>
+                <p className="timeline__node-text">{m.text}</p>
+              </div>
+            </article>
+          )
+        })}
       </div>
     </section>
   )

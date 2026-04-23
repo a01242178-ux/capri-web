@@ -1,13 +1,13 @@
 .timeline {
   background: #0a0a0a;
   color: #fff;
-  padding: clamp(60px, 10vw, 120px) clamp(20px, 5vw, 60px);
+  padding: clamp(60px, 10vw, 120px) clamp(24px, 5vw, 60px);
 }
 
 .timeline__intro {
   text-align: center;
   max-width: 720px;
-  margin: 0 auto clamp(48px, 6vw, 80px);
+  margin: 0 auto clamp(56px, 7vw, 96px);
 }
 
 .timeline__eyebrow {
@@ -31,67 +31,118 @@
   margin: 0 0 20px;
 }
 
-.timeline__accent {
-  color: #B0000B;
-}
+.timeline__accent { color: #B0000B; }
 
 .timeline__lead {
   font-family: 'Montserrat', system-ui, sans-serif;
   font-size: clamp(14px, 1.2vw, 17px);
-  color: rgba(255,255,255,0.72);
+  color: rgba(255, 255, 255, 0.65);
   line-height: 1.6;
-  max-width: 520px;
+  max-width: 480px;
   margin: 0 auto;
 }
+
+/* ── Track ─────────────────────────────────── */
 
 .timeline__track {
-  max-width: 1200px;
+  max-width: 960px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 32px 36px;
+  display: flex;
+  flex-direction: column;
 }
 
+/* ── Node ─────────────────────────────────── */
+
 .timeline__node {
-  padding: 28px 0 0;
-  border-top: 1px solid rgba(255,255,255,0.12);
+  display: grid;
+  grid-template-columns: clamp(110px, 14vw, 180px) 1fr;
+  column-gap: clamp(28px, 4vw, 56px);
+  align-items: start;
+  padding: clamp(28px, 3.5vw, 44px) 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
+}
+
+/* Red accent bar on top border */
+.timeline__node::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: clamp(32px, 4vw, 52px);
+  height: 2px;
+  background: #B0000B;
 }
 
 .timeline__year {
   font-family: 'Montserrat', system-ui, sans-serif;
   font-weight: 900;
   font-style: italic;
-  font-size: 42px;
+  font-size: clamp(36px, 4.5vw, 64px);
   color: #B0000B;
   line-height: 1;
-  margin-bottom: 6px;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
+  padding-top: 4px;
 }
 
-.timeline__bar {
-  position: absolute;
-  top: -1px;
-  left: 0;
-  width: 48px;
-  height: 2px;
-  background: #B0000B;
+.timeline__content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .timeline__node-title {
   font-family: 'Montserrat', system-ui, sans-serif;
   font-weight: 700;
-  font-size: 17px;
+  font-size: clamp(15px, 1.5vw, 18px);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  margin: 14px 0 10px;
+  letter-spacing: 0.05em;
   color: #fff;
+  margin: 0;
 }
 
 .timeline__node-text {
   font-family: 'Montserrat', system-ui, sans-serif;
-  font-size: 14px;
-  color: rgba(255,255,255,0.7);
-  line-height: 1.6;
+  font-size: clamp(13px, 1.1vw, 15px);
+  color: rgba(255, 255, 255, 0.62);
+  line-height: 1.65;
   margin: 0;
+  max-width: 520px;
+}
+
+/* ── "Hoy" final node ─────────────────────── */
+
+.timeline__node--hoy {
+  background: #B0000B;
+  margin-top: clamp(32px, 4vw, 56px);
+  padding: clamp(28px, 3.5vw, 44px) clamp(24px, 3vw, 40px);
+  border-top: none;
+}
+
+.timeline__node--hoy::before { display: none; }
+
+.timeline__node--hoy .timeline__year {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: clamp(32px, 4vw, 56px);
+}
+
+.timeline__node--hoy .timeline__node-title { color: #fff; }
+
+.timeline__node--hoy .timeline__node-text { color: rgba(255, 255, 255, 0.8); }
+
+/* ── Mobile ───────────────────────────────── */
+
+@media (max-width: 600px) {
+  .timeline__node {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .timeline__year {
+    font-size: clamp(28px, 9vw, 44px);
+  }
+
+  .timeline__node--hoy {
+    grid-template-columns: 1fr;
+  }
 }
