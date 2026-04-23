@@ -76,20 +76,22 @@ export default function Historia() {
         })
       })
 
-      // Neon CAPRI text — se prende/apaga con la posición del scroll (scrub)
-      const neonText = section.querySelector('.historia__neon-text')
-      if (neonText) {
-        gsap.timeline({
-          scrollTrigger: {
-            trigger: section.querySelector('.historia__chapter--founder'),
-            start: 'top 70%',
-            end: 'bottom 30%',
-            scrub: 1,
+      // Neon photo — scrub: oscura/desaturada → full color brillante al hacer scroll
+      const neonImg = section.querySelector('.historia__neon-img')
+      if (neonImg) {
+        gsap.fromTo(neonImg,
+          { filter: 'brightness(0.25) saturate(0) contrast(1.1)' },
+          {
+            filter: 'brightness(1.08) saturate(1.3) contrast(1.05)',
+            ease: 'power1.inOut',
+            scrollTrigger: {
+              trigger: section.querySelector('.historia__chapter--founder'),
+              start: 'top 75%',
+              end: 'center 40%',
+              scrub: 1.2,
+            }
           }
-        })
-          .to(neonText, { opacity: 1, duration: 0.3, ease: 'power1.in' })  // prende al entrar
-          .to(neonText, { opacity: 1, duration: 0.4 })                       // estable en el centro
-          .to(neonText, { opacity: 0, duration: 0.3, ease: 'power1.out' }) // apaga al salir
+        )
       }
 
       // Spotlight — quote neon intenso sobre fondo oscuro
@@ -193,12 +195,11 @@ export default function Historia() {
         <div className="historia__chapter-visual">
           <div className="historia__photo-wrap">
             <img
-              src="/images/historia/primera-sucursal.jpg"
-              alt="Primera sucursal Capri Carnes — Ciudad Juárez"
+              className="historia__neon-img"
+              src="/images/historia/primera-sucursal-neon.jpg"
+              alt="Primera sucursal Capri Carnes — Ciudad Juárez, letrero encendido"
               loading="lazy"
             />
-            {/* Texto CAPRI superpuesto — letrero neón sobre la foto, scrub con scroll */}
-            <div className="historia__neon-text" aria-hidden="true">capri</div>
             <div className="historia__photo-caption">
               La primera sucursal — Ciudad Juárez, años 60
             </div>

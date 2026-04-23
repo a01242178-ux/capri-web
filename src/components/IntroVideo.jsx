@@ -1,137 +1,73 @@
 import { useEffect, useRef } from 'react'
 import './IntroVideo.css'
 
-/**
- * Scroll-driven video intro.
- *
- * Architecture:
- * - Wrapper 250vh creates scroll distance; sticky child fills 100vh
- * - scroll → targetProgress (0..1)
- * - rAF lerps currentProgress toward targetProgress, stops when settled
- * - All DOM mutations (veil opacity, bottom visibility) via refs — no setState
- */
 export default function IntroVideo() {
-  const wrapperRef = useRef(null)
-  const videoRef = useRef(null)
-  const veilRef = useRef(null)
-  const bottomRef = useRef(null)
-  const loadingRef = useRef(null)
+  const wrapperRef  = useRef(null)
+  const stickyRef   = useRef(null)
+  const logoStageRef = useRef(null)
+  const bottomRef   = useRef(null)
 
   useEffect(() => {
-    const video = videoRef.current
-    const wrapper = wrapperRef.current
-    const veil = veilRef.current
-    const bottom = bottomRef.current
-    const loading = loadingRef.current
-    if (!video || !wrapper) return
+    const wrapper    = wrapperRef.current
+    const sticky     = stickyRef.current
+    const logoStage  = logoStageRef.current
+    const bottom     = bottomRef.current
+    if (!wrapper || !sticky) return
 
-    let rafId = null
-    let targetProgress = 0
-    let currentProgress = 0
-    let lastSeekTime = -1
-    let running = false
+    const onScroll = () => {
+      const rect       = wrapper.getBoundingClientRect()
+      const scrollable = rect.height - window.innerHeight
+      const p          = Math.min(1, Math.max(0, -rect.top / Math.max(1, scrollable)))
 
-    const computeTarget = () => {
-      const rect = wrapper.getBoundingClientRect()
-      const total = rect.height - window.innerHeight
-      targetProgress = Math.min(1, Math.max(0, -rect.top / Math.max(1, total)))
-    }
+      // Video section: iris close + zoom + fade
+      sticky.style.setProperty('--p', p)
 
-    const tick = () => {
-      currentProgress += (targetProgress - currentProgress) * 0.12
+      // Logo stage: appears p 0.35→0.62, then collapses p 0.82→1.0
+      // Lives OUTSIDE the fading video container — opacity is fully independent
+      if (logoStage) {
+        const showP  = Math.min(1, Math.max(0, (p - 0.35) / 0.27))
+        const colP   = Math.min(1, Math.max(0, (p - 0.82) / 0.18))
+        const logoOp = showP * (1 - colP)
+        const logoSc = 0.2 + showP * 0.8 - colP * 0.9
 
-      if (video.duration && !Number.isNaN(video.duration)) {
-        const desired = currentProgress * video.duration
-        if (Math.abs(desired - lastSeekTime) > 0.03) {
-          if (typeof video.fastSeek === 'function') {
-            video.fastSeek(desired)
-          } else {
-            video.currentTime = desired
-          }
-          lastSeekTime = desired
-        }
+        logoStage.style.opacity   = logoOp.toFixed(3)
+        logoStage.style.transform = `scale(${Math.max(0.05, logoSc).toFixed(3)})`
       }
 
-      // Veil fade-to-white at end
-      if (veil) {
-        veil.style.opacity = String(Math.max(0, (currentProgress - 0.7) / 0.3) * 0.95)
-      }
-      // Hide scroll cue once user starts scrolling
-      if (bottom) {
-        bottom.classList.toggle('is-hidden', currentProgress > 0.04)
-      }
-
-      // Stop loop when settled — avoids burning CPU while idle
-      if (Math.abs(targetProgress - currentProgress) < 0.0005) {
-        running = false
-        rafId = null
-        return
-      }
-
-      rafId = requestAnimationFrame(tick)
+      // Scroll cue hides once user starts scrolling
+      if (bottom) bottom.classList.toggle('is-hidden', p > 0.04)
     }
 
-    const startLoop = () => {
-      if (!running) {
-        running = true
-        rafId = requestAnimationFrame(tick)
-      }
-    }
-
-    const onScroll = () => { computeTarget(); startLoop() }
-
-    const onLoadedMeta = () => {
-      if (loading) loading.style.display = 'none'
-      video.play().then(() => video.pause()).catch(() => {})
-      computeTarget()
-      currentProgress = targetProgress
-      startLoop()
-    }
-
-    if (video.readyState >= 1) {
-      onLoadedMeta()
-    } else {
-      video.addEventListener('loadedmetadata', onLoadedMeta)
-    }
     window.addEventListener('scroll', onScroll, { passive: true })
     window.addEventListener('resize', onScroll, { passive: true })
-    computeTarget()
+    onScroll()
 
     return () => {
-      video.removeEventListener('loadedmetadata', onLoadedMeta)
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', onScroll)
-      if (rafId) cancelAnimationFrame(rafId)
     }
   }, [])
 
   return (
-    <section ref={wrapperRef} className="intro-video" aria-label="Carnicero Capri Carnes">
-      <div className="intro-video__sticky">
+    <section ref={wrapperRef} className="intro-video" aria-label="Capri Carnes">
 
+      {/* Video layer — fades and iris-closes with scroll */}
+      <div ref={stickyRef} className="intro-video__sticky" style={{ '--p': 0 }}>
         <video
-          ref={videoRef}
           className="intro-video__media"
           src="/videos/capri.mp4"
+          autoPlay
           muted
+          loop
           playsInline
           preload="auto"
           disableRemotePlayback
           controls={false}
           aria-hidden="true"
         />
+        <div className="intro-video__grain"   aria-hidden="true" />
+        <div className="intro-video__vignette" aria-hidden="true" />
 
-        {/* Logo — overlaid on top of video */}
-        <div className="intro-video__lockup">
-          <img
-            src="/images/capri-logo.jpg"
-            alt="Capri Carnes"
-            className="intro-video__logo"
-            loading="eager"
-          />
-        </div>
-
-        {/* Scroll cue — overlaid at bottom */}
         <div ref={bottomRef} className="intro-video__bottom">
           <div className="intro-video__tagline">Desde 1960 · La carne que Juárez conoce</div>
           <div className="intro-video__cue" aria-hidden="true">
@@ -139,11 +75,18 @@ export default function IntroVideo() {
             <span className="intro-video__cue-line" />
           </div>
         </div>
-
-        <div ref={veilRef} className="intro-video__veil" style={{ opacity: 0 }} />
-        <div ref={loadingRef} className="intro-video__loading">Cargando…</div>
-
       </div>
+
+      {/* Logo stage — separate sticky sibling, opacity NOT inherited from video fade */}
+      <div ref={logoStageRef} className="intro-video__logo-stage">
+        <img
+          src="/images/capri-logo.svg"
+          alt="Capri Carnes"
+          className="intro-video__logo"
+          loading="eager"
+        />
+      </div>
+
     </section>
   )
 }

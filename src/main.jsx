@@ -5,6 +5,9 @@ import './styles/globals.css'
 import './styles/typography.css'
 import './styles/components.css'
 
+// Disable browser scroll restoration so the page always starts at the top
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual'
+
 console.log('main.jsx: Starting...')
 
 const rootElement = document.getElementById('root')

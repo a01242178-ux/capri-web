@@ -1,12 +1,16 @@
-/* Scroll-driven video intro.
-   Wrapper height creates scroll distance; sticky child fills viewport. */
+/* IntroVideo — autoplay + scroll-driven exit
+   Video plays naturally; scroll drives the EXIT transition only (no currentTime scrub). */
+
+/* ── Wrapper — creates scroll distance ──────────── */
 
 .intro-video {
   position: relative;
   width: 100%;
-  height: 250vh;
-  background: #0a0a0a;
+  height: 180vh;
+  /* No background — when the sticky exits, the next section shows through */
 }
+
+/* ── Sticky viewport — driven by --p (0 → 1) ───── */
 
 .intro-video__sticky {
   position: sticky;
@@ -14,80 +18,141 @@
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background: #0a0a0a;
+  background: #000;
+
+  /* Sits above the header (z-index 100) while it's in view */
+  z-index: 101;
+
+  /* Scroll-driven exit: zoom + clip-path iris close + fade */
+  --p: 0;
+  opacity: calc(1 - var(--p) * 1.1);
+  transform: scale(calc(1 + var(--p) * 0.07));
+  clip-path: inset(calc(var(--p) * 7%) round calc(var(--p) * 28px));
+  will-change: opacity, transform, clip-path;
+  transition: none;
 }
 
-/* ── Video fills the full sticky viewport ───────── */
+/* ── Hidden SVG filter ──────────────────────────── */
+
+.intro-video__noise-svg {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+/* ── Video fills the viewport ───────────────────── */
 
 .intro-video__media {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;       /* never crops the mascot */
+  object-fit: cover;
   object-position: center;
   pointer-events: none;
   display: block;
 }
 
-/* ── Logo — top overlay ─────────────────────────── */
+/* ── Film grain overlay ─────────────────────────── */
 
-.intro-video__lockup {
+.intro-video__grain {
   position: absolute;
-  top: 3vh;
-  left: 50%;
-  transform: translateX(-50%);
+  inset: -10%;
+  width: 120%;
+  height: 120%;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.055;
+  mix-blend-mode: screen;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  animation: grain-drift 0.35s steps(2) infinite;
+}
+
+@keyframes grain-drift {
+  0%   { transform: translate(0, 0) }
+  25%  { transform: translate(-4px, 2px) }
+  50%  { transform: translate(3px, -3px) }
+  75%  { transform: translate(-2px, 4px) }
+  100% { transform: translate(4px, -1px) }
+}
+
+/* ── Vignette — dark edges for depth ────────────── */
+
+.intro-video__vignette {
+  position: absolute;
+  inset: 0;
   z-index: 2;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.7) 100%);
+}
+
+/* ── Logo stage — separate sticky sibling, opacity independent of video ── */
+
+.intro-video__logo-stage {
+  position: sticky;
+  top: 0;
+  /* Negative margin pulls it back up to overlap the video */
+  margin-top: -100vh;
+  height: 100vh;
+  width: 100%;
+  z-index: 102;
+  pointer-events: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: min(560px, 88vw);
-  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.2);
+  will-change: opacity, transform;
 }
 
 .intro-video__logo {
-  width: 100%;
+  width: min(600px, 72vw);
   height: auto;
-  max-height: 9vh;
+  max-height: 30vh;
   object-fit: contain;
   display: block;
+  mix-blend-mode: multiply;
+  filter: drop-shadow(0 4px 24px rgba(0, 0, 0, 0.4));
 }
 
-/* ── Scroll cue — bottom overlay ────────────────── */
+/* ── Scroll cue ─────────────────────────────────── */
 
 .intro-video__bottom {
   position: absolute;
-  bottom: 5vh;
+  bottom: 6vh;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 2;
+  z-index: 4;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 12px;
   pointer-events: none;
-  transition: opacity 500ms ease-out, transform 500ms ease-out;
+  transition: opacity 600ms ease-out, transform 600ms ease-out;
   opacity: 1;
   white-space: nowrap;
 }
 
 .intro-video__bottom.is-hidden {
   opacity: 0;
-  transform: translateX(-50%) translateY(10px);
+  transform: translateX(-50%) translateY(12px);
 }
 
 .intro-video__tagline {
   font-family: 'Montserrat', system-ui, sans-serif;
   font-weight: 600;
-  font-size: clamp(11px, 1.2vw, 15px);
-  letter-spacing: 0.26em;
+  font-size: clamp(10px, 1.1vw, 14px);
+  letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 2px 16px rgba(0,0,0,0.5);
   text-align: center;
 }
 
 .intro-video__cue {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.6);
   font-family: 'Montserrat', system-ui, sans-serif;
   font-weight: 500;
   font-size: 10px;
@@ -97,54 +162,48 @@
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  animation: cuePulse 2.4s ease-in-out infinite;
+  animation: cue-pulse 2.4s ease-in-out infinite;
 }
 
 .intro-video__cue-line {
   width: 1px;
-  height: 32px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0) 100%);
+  height: 36px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 100%);
 }
 
-@keyframes cuePulse {
-  0%, 100% { opacity: 0.7; transform: translateY(0) }
-  50%      { opacity: 1;   transform: translateY(4px) }
-}
-
-/* ── Fade veil ───────────────────────────────────── */
-
-.intro-video__veil {
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  background: linear-gradient(180deg, rgba(255,255,255,0) 45%, rgba(255,255,255,0.7) 80%, #fff 100%);
-  pointer-events: none;
-}
-
-/* ── Loading indicator ───────────────────────────── */
-
-.intro-video__loading {
-  position: absolute;
-  bottom: 10vh;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  color: rgba(255, 255, 255, 0.45);
-  font-family: 'Montserrat', system-ui, sans-serif;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  pointer-events: none;
+@keyframes cue-pulse {
+  0%, 100% { opacity: 0.6; transform: translateY(0) }
+  50%       { opacity: 1;   transform: translateY(5px) }
 }
 
 /* ── Mobile ─────────────────────────────────────── */
 
 @media (max-width: 640px) {
-  .intro-video { height: 200vh }
+  .intro-video {
+    height: 160vh;
+  }
+
+  .intro-video__logo {
+    max-height: 14vh;
+  }
+
+  /* Softer exit on small screens */
+  .intro-video__sticky {
+    clip-path: inset(calc(var(--p) * 4%) round calc(var(--p) * 16px));
+    transform: scale(calc(1 + var(--p) * 0.04));
+  }
 }
+
+/* ── Respect reduced motion ─────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {
   .intro-video { height: 100vh }
+  .intro-video__grain { animation: none }
+  .intro-video__logo { animation: none }
   .intro-video__cue { animation: none }
+  .intro-video__sticky {
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+  }
 }
