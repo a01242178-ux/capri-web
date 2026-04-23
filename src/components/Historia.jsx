@@ -88,13 +88,13 @@ export default function Historia() {
           }
         })
           .set(signGlow, { opacity: 0 })
-          .to(signGlow, { opacity: 0.4, duration: 0.08 })   // primer destello
-          .to(signGlow, { opacity: 0,   duration: 0.06 })   // apaga
-          .to(signGlow, { opacity: 0.7, duration: 0.10 })   // prende más fuerte
-          .to(signGlow, { opacity: 0.1, duration: 0.07 })   // parpadea
-          .to(signGlow, { opacity: 0.8, duration: 0.12 })   // casi estable
-          .to(signGlow, { opacity: 0.3, duration: 0.05 })   // un último parpadeo
-          .to(signGlow, { opacity: 1,   duration: 0.5, ease: 'power1.out' }) // encendido
+          .to(signGlow, { opacity: 0.9, duration: 0.07 })   // primer destello
+          .to(signGlow, { opacity: 0,   duration: 0.05 })   // apaga
+          .to(signGlow, { opacity: 1,   duration: 0.09 })   // prende fuerte
+          .to(signGlow, { opacity: 0.2, duration: 0.06 })   // parpadeo
+          .to(signGlow, { opacity: 1,   duration: 0.08 })   // vuelve
+          .to(signGlow, { opacity: 0.4, duration: 0.05 })   // último parpadeo
+          .to(signGlow, { opacity: 1,   duration: 0.6, ease: 'power1.out' }) // estable
       }
 
       // Spotlight — quote neon intenso sobre fondo oscuro
