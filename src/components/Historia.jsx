@@ -1,11 +1,159 @@
+import { useEffect, useRef } from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import '../styles/Historia.css'
 
-export default function Historia() {
-  return (
-    <section className="historia" id="historia">
+gsap.registerPlugin(ScrollTrigger)
 
-      {/* ── Opening ─────────────────────────────────── */}
-      <div className="historia__opening" data-reveal>
+export default function Historia() {
+  const sectionRef = useRef(null)
+
+  useEffect(() => {
+    const section = sectionRef.current
+    if (!section) return
+
+    const mm = gsap.matchMedia()
+
+    mm.add('(prefers-reduced-motion: no-preference)', () => {
+      // Opening
+      gsap.from(section.querySelector('.historia__opening'), {
+        opacity: 0,
+        y: 48,
+        duration: 0.8,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: section.querySelector('.historia__opening'),
+          start: 'top 82%',
+          toggleActions: 'play none none none',
+        }
+      })
+
+      // Chapter titles — slide up + neon rojo al entrar
+      section.querySelectorAll('.historia__chapter-title').forEach(title => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: title,
+            start: 'top 86%',
+            toggleActions: 'play none none none',
+          }
+        })
+        tl.from(title, {
+          opacity: 0,
+          y: 36,
+          duration: 0.65,
+          ease: 'power2.out',
+        })
+        .to(title, {
+          textShadow: [
+            '0 0 6px rgba(176,0,11,0.55)',
+            '0 0 20px rgba(176,0,11,0.35)',
+            '0 0 48px rgba(176,0,11,0.18)',
+          ].join(', '),
+          duration: 1.0,
+          ease: 'power1.out',
+        }, '-=0.15')
+      })
+
+      // Chapter text — label + body stagger
+      section.querySelectorAll('.historia__chapter-text').forEach(block => {
+        gsap.from(
+          block.querySelectorAll('.historia__chapter-label, .historia__chapter-body'),
+          {
+            opacity: 0,
+            y: 22,
+            stagger: 0.09,
+            duration: 0.65,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: block,
+              start: 'top 82%',
+              toggleActions: 'play none none none',
+            }
+          }
+        )
+      })
+
+      // Fotos — wipe de izquierda a derecha
+      section.querySelectorAll('.historia__chapter-visual').forEach(visual => {
+        gsap.from(visual, {
+          clipPath: 'inset(0 100% 0 0)',
+          duration: 0.9,
+          ease: 'power2.inOut',
+          scrollTrigger: {
+            trigger: visual,
+            start: 'top 88%',
+            toggleActions: 'play none none none',
+          }
+        })
+      })
+
+      // Spotlight — quote neon intenso sobre fondo oscuro
+      const quote = section.querySelector('.historia__quote')
+      if (quote) {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: quote,
+            start: 'top 80%',
+            toggleActions: 'play none none none',
+          }
+        })
+        tl.from(quote, {
+          opacity: 0,
+          y: 30,
+          duration: 0.8,
+          ease: 'power2.out',
+        })
+        .to(quote, {
+          textShadow: [
+            '0 0 10px rgba(176,0,11,0.85)',
+            '0 0 28px rgba(176,0,11,0.55)',
+            '0 0 60px rgba(176,0,11,0.28)',
+          ].join(', '),
+          duration: 1.3,
+          ease: 'power1.out',
+        }, '-=0.2')
+      }
+
+      // Spotlight body
+      const spotBody = section.querySelector('.historia__spotlight-body')
+      if (spotBody) {
+        gsap.from(spotBody, {
+          opacity: 0,
+          y: 20,
+          duration: 0.7,
+          ease: 'power2.out',
+          delay: 0.3,
+          scrollTrigger: {
+            trigger: spotBody,
+            start: 'top 84%',
+            toggleActions: 'play none none none',
+          }
+        })
+      }
+
+      // Stats — números caen en cascada
+      gsap.from(section.querySelectorAll('.historia__stat'), {
+        opacity: 0,
+        y: 28,
+        stagger: 0.1,
+        duration: 0.65,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: section.querySelector('.historia__stats'),
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+        }
+      })
+    })
+
+    return () => mm.revert()
+  }, [])
+
+  return (
+    <section ref={sectionRef} className="historia" id="historia">
+
+      {/* Opening */}
+      <div className="historia__opening">
         <p className="historia__eyebrow">Nuestra historia</p>
         <h2 className="historia__headline">
           Tres generaciones.<br />
@@ -17,9 +165,9 @@ export default function Historia() {
         </p>
       </div>
 
-      {/* ── El fundador ─────────────────────────────── */}
+      {/* El fundador */}
       <div className="historia__chapter historia__chapter--founder">
-        <div className="historia__chapter-text" data-reveal>
+        <div className="historia__chapter-text">
           <span className="historia__chapter-label">Primera generación</span>
           <h3 className="historia__chapter-title">
             Antonio García Villanueva
@@ -37,22 +185,22 @@ export default function Historia() {
             las sucursales homologaron su nombre: <strong>Capri Carnes</strong>.
           </p>
         </div>
-        <div className="historia__chapter-visual" data-reveal data-delay="2">
+        <div className="historia__chapter-visual">
           <div className="historia__photo-wrap">
             <img
-              src="/images/historia/rancho-1.jpg"
-              alt="El rancho — origen de la carne Capri"
+              src="/images/historia/primera-sucursal.jpg"
+              alt="Primera sucursal Capri Carnes — Ciudad Juárez"
               loading="lazy"
             />
             <div className="historia__photo-caption">
-              Del rancho a tu mesa — desde 1960
+              La primera sucursal — Ciudad Juárez, años 60
             </div>
           </div>
         </div>
       </div>
 
-      {/* ── Por qué Capri ───────────────────────────── */}
-      <div className="historia__spotlight" data-reveal>
+      {/* ¿Por qué Capri? */}
+      <div className="historia__spotlight">
         <div className="historia__spotlight-inner">
           <span className="historia__spotlight-tag">¿Por qué "Capri"?</span>
           <blockquote className="historia__quote">
@@ -69,9 +217,9 @@ export default function Historia() {
         </div>
       </div>
 
-      {/* ── Expansión ───────────────────────────────── */}
+      {/* Expansión */}
       <div className="historia__chapter historia__chapter--second">
-        <div className="historia__chapter-visual" data-reveal>
+        <div className="historia__chapter-visual">
           <div className="historia__photo-wrap">
             <img
               src="/images/historia/rancho-2.jpg"
@@ -83,7 +231,7 @@ export default function Historia() {
             </div>
           </div>
         </div>
-        <div className="historia__chapter-text" data-reveal data-delay="2">
+        <div className="historia__chapter-text">
           <span className="historia__chapter-label">Crecimiento</span>
           <h3 className="historia__chapter-title">
             Juárez entera<br />nos conoce
@@ -102,8 +250,8 @@ export default function Historia() {
         </div>
       </div>
 
-      {/* ── Stats ───────────────────────────────────── */}
-      <div className="historia__stats" data-reveal>
+      {/* Stats */}
+      <div className="historia__stats">
         <div className="historia__stat">
           <span className="historia__stat-num">+60</span>
           <span className="historia__stat-label">Años en la industria</span>
