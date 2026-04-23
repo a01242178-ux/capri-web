@@ -76,25 +76,20 @@ export default function Historia() {
         })
       })
 
-      // Neon sign flicker — glow sobre la foto de la 1era sucursal
-      const signGlow = section.querySelector('.historia__sign-glow')
-      if (signGlow) {
+      // Neon CAPRI text — se prende/apaga con la posición del scroll (scrub)
+      const neonText = section.querySelector('.historia__neon-text')
+      if (neonText) {
         gsap.timeline({
           scrollTrigger: {
-            // Dispara cuando la foto del letrero entra al viewport
-            trigger: section.querySelector('.historia__chapter--founder .historia__chapter-visual'),
-            start: 'top 72%',
-            toggleActions: 'play none none none',
+            trigger: section.querySelector('.historia__chapter--founder'),
+            start: 'top 70%',
+            end: 'bottom 30%',
+            scrub: 1,
           }
         })
-          .set(signGlow, { opacity: 0 })
-          .to(signGlow, { opacity: 0.9, duration: 0.07 })   // primer destello
-          .to(signGlow, { opacity: 0,   duration: 0.05 })   // apaga
-          .to(signGlow, { opacity: 1,   duration: 0.09 })   // prende fuerte
-          .to(signGlow, { opacity: 0.2, duration: 0.06 })   // parpadeo
-          .to(signGlow, { opacity: 1,   duration: 0.08 })   // vuelve
-          .to(signGlow, { opacity: 0.4, duration: 0.05 })   // último parpadeo
-          .to(signGlow, { opacity: 1,   duration: 0.6, ease: 'power1.out' }) // estable
+          .to(neonText, { opacity: 1, duration: 0.3, ease: 'power1.in' })  // prende al entrar
+          .to(neonText, { opacity: 1, duration: 0.4 })                       // estable en el centro
+          .to(neonText, { opacity: 0, duration: 0.3, ease: 'power1.out' }) // apaga al salir
       }
 
       // Spotlight — quote neon intenso sobre fondo oscuro
@@ -202,8 +197,8 @@ export default function Historia() {
               alt="Primera sucursal Capri Carnes — Ciudad Juárez"
               loading="lazy"
             />
-            {/* Neon glow overlay — se enciende sobre el letrero CAPRI de la foto */}
-            <div className="historia__sign-glow" aria-hidden="true" />
+            {/* Texto CAPRI superpuesto — letrero neón sobre la foto, scrub con scroll */}
+            <div className="historia__neon-text" aria-hidden="true">capri</div>
             <div className="historia__photo-caption">
               La primera sucursal — Ciudad Juárez, años 60
             </div>

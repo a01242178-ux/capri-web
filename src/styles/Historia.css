@@ -125,24 +125,39 @@
   transform: scale(1.04);
 }
 
-/* Neon sign glow overlay — encima del letrero CAPRI en la foto */
-.historia__sign-glow {
+/* ── Texto neón CAPRI superpuesto sobre la foto ─── */
+
+.historia__neon-text {
   position: absolute;
-  inset: 0;
-  z-index: 3;
-  opacity: 0;
+  /* Ajustado para trazar el letrero original en la foto */
+  bottom: 28%;
+  left: 0;
+  right: 0;
+  z-index: 4;
+  opacity: 0;             /* GSAP controla opacity con scrub */
   pointer-events: none;
-  /* Glow centrado donde está el letrero (centro-izquierda de la foto) */
-  background:
-    radial-gradient(
-      ellipse 80% 50% at 42% 38%,
-      rgba(255, 20, 20, 1)    0%,
-      rgba(220, 0, 11, 0.85) 20%,
-      rgba(176, 0, 11, 0.55) 45%,
-      rgba(176, 0, 11, 0.2)  65%,
-      transparent            85%
-    );
-  filter: blur(14px);
+  user-select: none;
+  text-align: center;
+
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-weight: 900;
+  font-style: italic;
+  font-size: clamp(52px, 13vw, 140px);
+  text-transform: lowercase;   /* "capri" en minúscula, como el letrero original */
+  letter-spacing: -0.02em;
+  line-height: 1;
+
+  /* Neón: color rojo brillante + capas de glow */
+  color: rgba(255, 60, 60, 0.95);
+  text-shadow:
+    0 0 4px #fff,
+    0 0 8px #ff2020,
+    0 0 18px #ff2020,
+    0 0 36px #B0000B,
+    0 0 70px #B0000B,
+    0 0 120px rgba(176, 0, 11, 0.5);
+  /* Stroke para el delineado */
+  -webkit-text-stroke: 1px rgba(255, 120, 120, 0.6);
 }
 
 .historia__photo-caption {
