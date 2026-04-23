@@ -1,6 +1,7 @@
 import IntroVideo from './components/IntroVideo'
 import Header from './components/Header'
 import Hero from './components/Hero'
+import Historia from './components/Historia'
 import Timeline from './components/Timeline'
 import ProductGrid from './components/ProductGrid'
 import BranchMap from './components/BranchMap'
@@ -52,6 +53,7 @@ export default function App() {
       <IntroVideo />
       <Header />
       <Hero />
+      <Historia />
       <Timeline />
       <ProductGrid />
       <BranchMap />
