@@ -8,7 +8,7 @@
 
   /* Typography */
   --font-primary: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-heading: 'Arial Black', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: 'Montserrat', system-ui, sans-serif;
 
   /* Spacing */
   --spacing-xs: 8px;
@@ -78,6 +78,13 @@ button {
 [data-reveal][data-delay='4'] { transition-delay: 320ms; }
 [data-reveal][data-delay='5'] { transition-delay: 400ms; }
 [data-reveal][data-delay='6'] { transition-delay: 480ms; }
+
+/* Focus — keyboard navigation */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #B0000B;
+  outline-offset: 3px;
+}
 
 @media (prefers-reduced-motion: reduce) {
   [data-reveal] { opacity: 1; transform: none; }
