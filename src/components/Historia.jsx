@@ -28,30 +28,19 @@ export default function Historia() {
         }
       })
 
-      // Chapter titles — slide up + neon rojo al entrar
+      // Chapter titles — slide up simple (sin neon, eso va en el logo)
       section.querySelectorAll('.historia__chapter-title').forEach(title => {
-        const tl = gsap.timeline({
+        gsap.from(title, {
+          opacity: 0,
+          y: 36,
+          duration: 0.65,
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: title,
             start: 'top 86%',
             toggleActions: 'play none none none',
           }
         })
-        tl.from(title, {
-          opacity: 0,
-          y: 36,
-          duration: 0.65,
-          ease: 'power2.out',
-        })
-        .to(title, {
-          textShadow: [
-            '0 0 6px rgba(176,0,11,0.55)',
-            '0 0 20px rgba(176,0,11,0.35)',
-            '0 0 48px rgba(176,0,11,0.18)',
-          ].join(', '),
-          duration: 1.0,
-          ease: 'power1.out',
-        }, '-=0.15')
       })
 
       // Chapter text — label + body stagger
@@ -86,6 +75,27 @@ export default function Historia() {
           }
         })
       })
+
+      // Neon sign flicker — glow sobre la foto de la 1era sucursal
+      const signGlow = section.querySelector('.historia__sign-glow')
+      if (signGlow) {
+        gsap.timeline({
+          scrollTrigger: {
+            // Dispara cuando la foto del letrero entra al viewport
+            trigger: section.querySelector('.historia__chapter--founder .historia__chapter-visual'),
+            start: 'top 72%',
+            toggleActions: 'play none none none',
+          }
+        })
+          .set(signGlow, { opacity: 0 })
+          .to(signGlow, { opacity: 0.4, duration: 0.08 })   // primer destello
+          .to(signGlow, { opacity: 0,   duration: 0.06 })   // apaga
+          .to(signGlow, { opacity: 0.7, duration: 0.10 })   // prende más fuerte
+          .to(signGlow, { opacity: 0.1, duration: 0.07 })   // parpadea
+          .to(signGlow, { opacity: 0.8, duration: 0.12 })   // casi estable
+          .to(signGlow, { opacity: 0.3, duration: 0.05 })   // un último parpadeo
+          .to(signGlow, { opacity: 1,   duration: 0.5, ease: 'power1.out' }) // encendido
+      }
 
       // Spotlight — quote neon intenso sobre fondo oscuro
       const quote = section.querySelector('.historia__quote')
@@ -192,6 +202,8 @@ export default function Historia() {
               alt="Primera sucursal Capri Carnes — Ciudad Juárez"
               loading="lazy"
             />
+            {/* Neon glow overlay — se enciende sobre el letrero CAPRI de la foto */}
+            <div className="historia__sign-glow" aria-hidden="true" />
             <div className="historia__photo-caption">
               La primera sucursal — Ciudad Juárez, años 60
             </div>

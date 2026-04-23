@@ -125,6 +125,28 @@
   transform: scale(1.04);
 }
 
+/* Neon sign glow overlay — encima de la foto de la 1era sucursal */
+.historia__sign-glow {
+  position: absolute;
+  /* El letrero CAPRI está en la parte superior central de la foto */
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 65%;
+  z-index: 2;
+  opacity: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 70% 55% at 45% 35%,
+    rgba(176, 0, 11, 0.65) 0%,
+    rgba(176, 0, 11, 0.35) 35%,
+    rgba(176, 0, 11, 0.12) 65%,
+    transparent 100%
+  );
+  mix-blend-mode: screen;
+  filter: blur(6px);
+}
+
 .historia__photo-caption {
   position: absolute;
   bottom: 20px;
