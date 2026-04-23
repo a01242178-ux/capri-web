@@ -8,7 +8,7 @@ import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
 import IntroOpcion1 from './components/IntroOpcion1'
 import IntroOpcion2 from './components/IntroOpcion2'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 function getOverrideVariant() {
   if (typeof window === 'undefined') return null
@@ -19,6 +19,15 @@ function getOverrideVariant() {
 export default function App() {
   const variant = getOverrideVariant()
   const [legacyIntroDone, setLegacyIntroDone] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); observer.unobserve(e.target) } }),
+      { threshold: 0.12 }
+    )
+    document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el))
+    return () => observer.disconnect()
+  }, [])
 
   // Legacy variants remain reachable at /?intro=1 and /?intro=2 for comparison
   if (variant === '1' || variant === '2') {

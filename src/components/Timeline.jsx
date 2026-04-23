@@ -27,7 +27,7 @@ export default function Timeline() {
 
       <div className="timeline__track">
         {milestones.map((m, i) => (
-          <article key={i} className="timeline__node">
+          <article key={i} className="timeline__node" data-reveal data-delay={String((i % 4) + 1)}>
             <div className="timeline__year">{m.year}</div>
             <div className="timeline__bar" />
             <h3 className="timeline__node-title">{m.title}</h3>

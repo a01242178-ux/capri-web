@@ -24,8 +24,8 @@ export default function ProductGrid() {
       </div>
 
       <div className="product-grid__grid">
-        {products.map(p => (
-          <article className="product-card" key={p.id}>
+        {products.map((p, i) => (
+          <article className="product-card" key={p.id} data-reveal data-delay={String((i % 3) + 1)}>
             <div className="product-card__media">
               <img src={p.image} alt={p.name} loading="lazy" />
               <div className="product-card__grad" />

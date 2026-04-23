@@ -3,20 +3,13 @@ import '../styles/Hero.css'
 export default function Hero() {
   return (
     <section className="hero">
-      <div className="hero-image">
-        <img
-          src="/images/fotos/dsc0017-web.jpg"
-          alt="Premium beef cuts from Capri Carnes"
-          loading="lazy"
-        />
-      </div>
-      <div className="hero-text">
-        <h1 className="hero-title">Del Rancho<br />A Tu Mesa</h1>
-        <p className="hero-subtitle">
-          Desde 1960, ofrecemos los mejores cortes de carne, seleccionados con cuidado y calidad garantizada.
-          Más de 60 años en la industria cárnica con tradición y excelencia.
+      <div className="hero__content">
+        <p className="hero__eyebrow">Desde 1960 · Ciudad Juárez</p>
+        <h1 className="hero__title">Del Rancho<br />A Tu Mesa</h1>
+        <p className="hero__sub">
+          Tres generaciones seleccionando los mejores cortes. Calidad premium al alcance de cada familia juarense.
         </p>
-        <button className="btn btn-cta">Conoce nuestros productos</button>
+        <a href="#products" className="hero__cta">Conoce nuestros productos</a>
       </div>
     </section>
   )
