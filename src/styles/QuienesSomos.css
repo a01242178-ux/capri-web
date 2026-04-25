@@ -247,3 +247,40 @@
 }
 
 .qs__spotlight-body strong { color: #fff; }
+
+/* ── Visual con neon text ───────────────────── */
+.qs__chapter-visual--neon {
+  position: relative;
+}
+
+/* Texto "capri." neón superpuesto sobre la foto */
+.qs__neon-text {
+  position: absolute;
+  bottom: 26%;
+  left: 0;
+  right: 0;
+  z-index: 4;
+  opacity: 0;          /* GSAP scrub controla la opacidad */
+  pointer-events: none;
+  user-select: none;
+  text-align: center;
+
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-weight: 900;
+  font-style: italic;
+  font-size: clamp(48px, 12vw, 128px);
+  text-transform: lowercase;
+  letter-spacing: -0.02em;
+  line-height: 1;
+
+  /* Neón rojo — capas de glow */
+  color: rgba(255, 60, 60, 0.95);
+  text-shadow:
+    0 0 4px #fff,
+    0 0 8px #ff2020,
+    0 0 18px #ff2020,
+    0 0 36px #B0000B,
+    0 0 70px #B0000B,
+    0 0 120px rgba(176, 0, 11, 0.5);
+  -webkit-text-stroke: 1px rgba(255, 120, 120, 0.55);
+}

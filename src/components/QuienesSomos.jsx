@@ -122,14 +122,14 @@ export default function QuienesSomos() {
         }
       })
 
-      // Neon photo — Terraza Social: oscura/desaturada → full color brillante al hacer scroll
+      // Neon photo — Terraza Social: oscura/desaturada → full color al hacer scroll
       const neonImg = section.querySelector('.qs__neon-img')
       const neonTrigger = section.querySelector('.qs__chapter--terraza')
       if (neonImg && neonTrigger) {
         gsap.fromTo(neonImg,
-          { filter: 'brightness(0.2) saturate(0) contrast(1.1)' },
+          { filter: 'brightness(0.15) saturate(0) contrast(1.1)' },
           {
-            filter: 'brightness(1.1) saturate(1.4) contrast(1.05)',
+            filter: 'brightness(1.05) saturate(1.3) contrast(1.05)',
             ease: 'power1.inOut',
             scrollTrigger: {
               trigger: neonTrigger,
@@ -139,6 +139,22 @@ export default function QuienesSomos() {
             }
           }
         )
+      }
+
+      // Neon text "capri." — scrub sync: entra, se mantiene, sale
+      const neonText = section.querySelector('.qs__neon-text')
+      if (neonText && neonTrigger) {
+        gsap.timeline({
+          scrollTrigger: {
+            trigger: neonTrigger,
+            start: 'top 65%',
+            end: 'bottom 20%',
+            scrub: 1.2,
+          }
+        })
+          .to(neonText, { opacity: 1, duration: 0.25, ease: 'power2.in' })
+          .to(neonText, { opacity: 1, duration: 0.5 })
+          .to(neonText, { opacity: 0, duration: 0.25, ease: 'power2.out' })
       }
 
       // Spotlight quote — neon rojo pulsante
@@ -242,13 +258,16 @@ export default function QuienesSomos() {
               </div>
             )}
           </div>
-          <div className={`qs__chapter-visual${ch.extraImages ? ' qs__chapter-visual--multi' : ''}`}>
+          <div className={`qs__chapter-visual${ch.extraImages ? ' qs__chapter-visual--multi' : ''}${ch.isNeon ? ' qs__chapter-visual--neon' : ''}`}>
             <img
               src={ch.image}
               alt={ch.imageAlt}
               loading="lazy"
               className={ch.isNeon ? 'qs__neon-img' : undefined}
             />
+            {ch.isNeon && (
+              <span className="qs__neon-text" aria-hidden="true">capri.</span>
+            )}
             {ch.extraImages && ch.extraImages.map((ei, j) => (
               <img key={j} src={ei.src} alt={ei.alt} loading="lazy" />
             ))}
