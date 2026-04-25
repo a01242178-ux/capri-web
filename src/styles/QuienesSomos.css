@@ -192,8 +192,7 @@
 
 /* ── Neon photo (Terraza) ──────────────────── */
 .qs__neon-img {
-  /* starts dark, GSAP scrub animates it to full color */
-  filter: brightness(0.2) saturate(0) contrast(1.1);
+  filter: brightness(0.15) saturate(0) contrast(1.1);
 }
 
 /* ── Spotlight neon quote ───────────────────── */
@@ -248,19 +247,33 @@
 
 .qs__spotlight-body strong { color: #fff; }
 
-/* ── Visual con neon text ───────────────────── */
+/* ── Visual neon — Terraza Social ───────────── */
 .qs__chapter-visual--neon {
   position: relative;
+  min-height: 480px;
 }
 
-/* Texto "capri." neón superpuesto sobre la foto */
+/* photo-wrap llena todo el visual (exacto al original de Historia) */
+.qs__photo-wrap {
+  position: absolute;
+  inset: 0;
+}
+
+.qs__photo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Texto "capri." neón superpuesto */
 .qs__neon-text {
   position: absolute;
-  bottom: 26%;
+  bottom: 28%;
   left: 0;
   right: 0;
   z-index: 4;
-  opacity: 0;          /* GSAP scrub controla la opacidad */
+  opacity: 0;
   pointer-events: none;
   user-select: none;
   text-align: center;
@@ -268,12 +281,11 @@
   font-family: 'Montserrat', system-ui, sans-serif;
   font-weight: 900;
   font-style: italic;
-  font-size: clamp(48px, 12vw, 128px);
+  font-size: clamp(52px, 13vw, 140px);
   text-transform: lowercase;
   letter-spacing: -0.02em;
   line-height: 1;
 
-  /* Neón rojo — capas de glow */
   color: rgba(255, 60, 60, 0.95);
   text-shadow:
     0 0 4px #fff,
@@ -282,5 +294,11 @@
     0 0 36px #B0000B,
     0 0 70px #B0000B,
     0 0 120px rgba(176, 0, 11, 0.5);
-  -webkit-text-stroke: 1px rgba(255, 120, 120, 0.55);
+  -webkit-text-stroke: 1px rgba(255, 120, 120, 0.6);
+}
+
+@media (max-width: 768px) {
+  .qs__chapter-visual--neon {
+    min-height: 300px;
+  }
 }

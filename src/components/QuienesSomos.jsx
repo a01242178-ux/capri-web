@@ -259,18 +259,24 @@ export default function QuienesSomos() {
             )}
           </div>
           <div className={`qs__chapter-visual${ch.extraImages ? ' qs__chapter-visual--multi' : ''}${ch.isNeon ? ' qs__chapter-visual--neon' : ''}`}>
-            <img
-              src={ch.image}
-              alt={ch.imageAlt}
-              loading="lazy"
-              className={ch.isNeon ? 'qs__neon-img' : undefined}
-            />
-            {ch.isNeon && (
-              <span className="qs__neon-text" aria-hidden="true">capri.</span>
+            {ch.isNeon ? (
+              <div className="qs__photo-wrap">
+                <img
+                  src={ch.image}
+                  alt={ch.imageAlt}
+                  loading="lazy"
+                  className="qs__neon-img"
+                />
+                <div className="qs__neon-text" aria-hidden="true">capri.</div>
+              </div>
+            ) : (
+              <>
+                <img src={ch.image} alt={ch.imageAlt} loading="lazy" />
+                {ch.extraImages && ch.extraImages.map((ei, j) => (
+                  <img key={j} src={ei.src} alt={ei.alt} loading="lazy" />
+                ))}
+              </>
             )}
-            {ch.extraImages && ch.extraImages.map((ei, j) => (
-              <img key={j} src={ei.src} alt={ei.alt} loading="lazy" />
-            ))}
           </div>
         </div>
 
