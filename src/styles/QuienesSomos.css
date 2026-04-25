@@ -189,3 +189,61 @@
     padding: 36px 24px;
   }
 }
+
+/* ── Neon photo (Terraza) ──────────────────── */
+.qs__neon-img {
+  /* starts dark, GSAP scrub animates it to full color */
+  filter: brightness(0.2) saturate(0) contrast(1.1);
+}
+
+/* ── Spotlight neon quote ───────────────────── */
+.qs__spotlight {
+  background: #0a0a0a;
+  padding: clamp(64px, 9vw, 120px) clamp(24px, 5vw, 60px);
+}
+
+.qs__spotlight-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.qs__spotlight-tag {
+  display: inline-block;
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: #B0000B;
+  margin-bottom: 32px;
+}
+
+.qs__spotlight-quote {
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-weight: 700;
+  font-style: italic;
+  font-size: clamp(18px, 2.8vw, 34px);
+  line-height: 1.45;
+  color: #fff;
+  margin: 0 0 32px;
+  padding: 0;
+  border: none;
+  quotes: none;
+}
+
+.qs__spotlight-quote em {
+  color: #B0000B;
+  font-style: normal;
+}
+
+.qs__spotlight-body {
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-size: clamp(14px, 1.2vw, 16px);
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.75;
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+.qs__spotlight-body strong { color: #fff; }

@@ -30,6 +30,7 @@ const chapters = [
     ],
     image: driveImg('1zXEVoIgK-j3AuDRWsZlrxM02DKZg75Ku'),
     imageAlt: 'La Terraza Social Capri — Primera sucursal, Ciudad Juárez',
+    isNeon: true,
   },
   {
     id: 'juarez',
@@ -120,6 +121,55 @@ export default function QuienesSomos() {
           })
         }
       })
+
+      // Neon photo — Terraza Social: oscura/desaturada → full color brillante al hacer scroll
+      const neonImg = section.querySelector('.qs__neon-img')
+      const neonTrigger = section.querySelector('.qs__chapter--terraza')
+      if (neonImg && neonTrigger) {
+        gsap.fromTo(neonImg,
+          { filter: 'brightness(0.2) saturate(0) contrast(1.1)' },
+          {
+            filter: 'brightness(1.1) saturate(1.4) contrast(1.05)',
+            ease: 'power1.inOut',
+            scrollTrigger: {
+              trigger: neonTrigger,
+              start: 'top 75%',
+              end: 'center 35%',
+              scrub: 1.4,
+            }
+          }
+        )
+      }
+
+      // Spotlight quote — neon rojo pulsante
+      const quote = section.querySelector('.qs__spotlight-quote')
+      if (quote) {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: quote,
+            start: 'top 80%',
+            toggleActions: 'play none none none',
+          }
+        })
+        tl.from(quote, { opacity: 0, y: 30, duration: 0.8, ease: 'power2.out' })
+          .to(quote, {
+            textShadow: [
+              '0 0 10px rgba(176,0,11,0.85)',
+              '0 0 28px rgba(176,0,11,0.55)',
+              '0 0 60px rgba(176,0,11,0.28)',
+            ].join(', '),
+            duration: 1.3,
+            ease: 'power1.out',
+          }, '-=0.2')
+      }
+
+      const spotBody = section.querySelector('.qs__spotlight-body')
+      if (spotBody) {
+        gsap.from(spotBody, {
+          opacity: 0, y: 20, duration: 0.7, ease: 'power2.out', delay: 0.3,
+          scrollTrigger: { trigger: spotBody, start: 'top 84%', toggleActions: 'play none none none' }
+        })
+      }
     })
     return () => mm.revert()
   }, [])
@@ -163,7 +213,8 @@ export default function QuienesSomos() {
       </div>
 
       {chapters.map((ch, i) => (
-        <div key={ch.id} className={`qs__chapter${i % 2 === 1 ? ' qs__chapter--reverse' : ''}`}>
+        <div key={ch.id}>
+        <div className={`qs__chapter${i % 2 === 1 ? ' qs__chapter--reverse' : ''}${ch.isNeon ? ' qs__chapter--terraza' : ''}`}>
           <div className="qs__chapter-text">
             <span className="qs__chapter-label">{ch.label}</span>
             <h3 className="qs__chapter-title">{ch.title}</h3>
@@ -192,11 +243,37 @@ export default function QuienesSomos() {
             )}
           </div>
           <div className={`qs__chapter-visual${ch.extraImages ? ' qs__chapter-visual--multi' : ''}`}>
-            <img src={ch.image} alt={ch.imageAlt} loading="lazy" />
+            <img
+              src={ch.image}
+              alt={ch.imageAlt}
+              loading="lazy"
+              className={ch.isNeon ? 'qs__neon-img' : undefined}
+            />
             {ch.extraImages && ch.extraImages.map((ei, j) => (
               <img key={j} src={ei.src} alt={ei.alt} loading="lazy" />
             ))}
           </div>
+        </div>
+
+        {/* Spotlight neon — solo después de La Terraza Social */}
+        {ch.isNeon && (
+          <div className="qs__spotlight">
+            <div className="qs__spotlight-inner">
+              <span className="qs__spotlight-tag">¿Por qué "Capri"?</span>
+              <blockquote className="qs__spotlight-quote">
+                "En los años 60, nuestra sucursal tenía dos pisos.
+                El segundo se llamaba <em>La Terraza Social Capri</em> —
+                donde tocaban las mejores orquestas de México."
+              </blockquote>
+              <p className="qs__spotlight-body">
+                La gente empezó a llamarla <strong>"la carnicería Capri"</strong>.
+                Ese nombre se quedó grabado. En 1998 se volvió oficial para todas
+                las sucursales — un legado nacido de la música, la carne y el
+                orgullo juarense.
+              </p>
+            </div>
+          </div>
+        )}
         </div>
       ))}
     </section>
