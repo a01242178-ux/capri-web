@@ -1,6 +1,20 @@
 .product-grid {
-  background: #fff;
+  position: relative;
   padding: clamp(60px, 10vw, 120px) clamp(20px, 5vw, 60px);
+  overflow: hidden;
+}
+
+.product-grid__grainient-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 1;
+}
+
+.product-grid > *:not(.product-grid__grainient-bg) {
+  position: relative;
+  z-index: 1;
 }
 
 .product-grid__intro {
@@ -28,7 +42,8 @@
   letter-spacing: -0.025em;
   text-transform: uppercase;
   margin: 0 0 20px;
-  color: #0a0a0a;
+  color: #fff;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.4);
 }
 
 .product-grid__accent { color: #B0000B }
@@ -36,7 +51,7 @@
 .product-grid__lead {
   font-family: 'Montserrat', system-ui, sans-serif;
   font-size: clamp(14px, 1.2vw, 17px);
-  color: rgba(0,0,0,0.66);
+  color: rgba(255,255,255,0.78);
   line-height: 1.6;
   max-width: 520px;
   margin: 0 auto;
