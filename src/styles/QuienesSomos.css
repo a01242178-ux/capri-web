@@ -263,13 +263,14 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 20%;
   display: block;
 }
 
-/* Texto "capri." neón superpuesto */
+/* Texto "capri." neón superpuesto — alineado sobre el letrero real */
 .qs__neon-text {
   position: absolute;
-  bottom: 28%;
+  bottom: 52%;
   left: 0;
   right: 0;
   z-index: 4;

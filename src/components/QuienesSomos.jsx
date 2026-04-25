@@ -28,8 +28,8 @@ const chapters = [
       'En los años 60, nuestra sucursal más emblemática tenía dos pisos. El segundo se llamaba "La Terraza Social Capri" — donde tocaban las mejores orquestas de México.',
       'La gente empezó a llamarla "la carnicería Capri". Ese nombre se quedó grabado en la memoria colectiva de Juárez. En 1998 se volvió oficial para todas las sucursales: un legado nacido de la música, la carne y el orgullo juarense.',
     ],
-    image: driveImg('1zXEVoIgK-j3AuDRWsZlrxM02DKZg75Ku'),
-    imageAlt: 'La Terraza Social Capri — Primera sucursal, Ciudad Juárez',
+    image: '/images/historia/capri-neon.jpeg',
+    imageAlt: 'Letrero neón Capri — La Terraza Social, Ciudad Juárez años 60',
     isNeon: true,
   },
   {
