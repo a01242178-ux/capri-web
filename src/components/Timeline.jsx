@@ -1,20 +1,57 @@
+import { useEffect, useRef } from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import '../styles/Timeline.css'
 
+gsap.registerPlugin(ScrollTrigger)
+
 const milestones = [
-  { year: '1960', title: 'Fundación', text: 'Nace Capri Carnes en Ciudad Juárez, Chihuahua. Una carnicería familiar con compromiso por la calidad.' },
-  { year: '1972', title: 'Primera sucursal', text: 'Apertura de la segunda sucursal en el centro de Juárez. Empieza la expansión.' },
-  { year: '1985', title: 'Más de 5 sucursales', text: 'Consolidamos presencia en las principales zonas de Ciudad Juárez.' },
-  { year: '1998', title: 'El nombre Capri', text: 'Todas las sucursales homologan oficialmente el nombre Capri Carnes.' },
-  { year: '2010', title: 'Capri Primavera', text: 'Abrimos la sucursal Primavera, hoy uno de nuestros puntos insignia.' },
-  { year: '2018', title: '16 sucursales', text: 'Llegamos a toda la ciudad. Calidad premium al alcance de cada familia juarense.' },
+  { year: '1960', title: 'Fundación', text: 'Nace una carnicería de mercado en el Mercado Juárez, Ciudad Juárez, Chihuahua. Una carnicería familiar con compromiso por el servicio y la calidad.' },
+  { year: '1970', title: 'Más de 3 Sucursales', text: 'Todas de diferentes nombres. La más conocida: "La Terraza Social Capri" en una pequeña esquina.' },
+  { year: '1985', title: 'Rancho', text: 'Se adquiere un rancho en Chihuahua, iniciando la pasión por la ganadería.' },
+  { year: '1998', title: 'El Nombre Capri', text: 'Fusión a una marca única. Homologación oficial de "Capri Carnes" con 7 sucursales.' },
+  { year: '2006', title: 'Expansión', text: 'La ciudad crece. Capri se expande a cada rincón.' },
+  { year: '2018', title: '+12 Sucursales', text: 'Llegamos a toda la ciudad. Calidad y servicio al alcance de cada familia juarense.' },
   { year: '2022', title: 'Renovación', text: 'Modernizamos procesos y estándares sin perder la esencia artesanal.' },
-  { year: '2024', title: 'Entrega a domicilio', text: 'Lanzamos WhatsApp directo para ordenar. Tu corte llega a tu mesa.' },
-  { year: 'Hoy', title: 'Del rancho a tu mesa', text: '+60 años. Tercera generación. Orgullosamente juarenses, 100% mexicanos.' },
+  { year: '2025', title: 'Nuevas Tecnologías', text: 'Lanzamiento de App Oficial para compra online: ordena y recoge, o a domicilio.' },
+  { year: 'Hoy', title: 'Legado', text: 'Trabajando como nunca antes. +60 años, cuarta generación. Orgullosamente juarenses.' },
 ]
 
 export default function Timeline() {
+  const sectionRef = useRef(null)
+  const trackRef   = useRef(null)
+
+  useEffect(() => {
+    const section = sectionRef.current
+    const track   = trackRef.current
+    if (!section || !track) return
+
+    const mm = gsap.matchMedia()
+
+    mm.add('(prefers-reduced-motion: no-preference)', () => {
+      const nodes = track.querySelectorAll('.timeline__node')
+
+      gsap.set(nodes, { opacity: 0, y: 40 })
+
+      gsap.to(nodes, {
+        opacity: 1,
+        y: 0,
+        stagger: 0.07,
+        duration: 0.6,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 75%',
+          toggleActions: 'play none none none',
+        },
+      })
+    })
+
+    return () => mm.revert()
+  }, [])
+
   return (
-    <section className="timeline" id="timeline">
+    <section ref={sectionRef} className="timeline" id="timeline">
 
       {/* Video background */}
       <div className="timeline__video-bg">
@@ -36,20 +73,18 @@ export default function Timeline() {
           Más de <span className="timeline__accent">60 años</span><br />de tradición
         </h2>
         <p className="timeline__lead">
-          Tres generaciones dedicadas a llevar la mejor carne a las familias juarenses.
+          Cuatro generaciones dedicadas a llevar la mejor carne a las familias juarenses.
         </p>
       </div>
 
       {/* Horizontal track */}
-      <div className="timeline__track">
+      <div ref={trackRef} className="timeline__track">
         {milestones.map((m, i) => {
           const isLast = i === milestones.length - 1
           return (
             <article
               key={i}
               className={`timeline__node${isLast ? ' timeline__node--hoy' : ''}`}
-              data-reveal
-              data-delay={String((i % 4) + 1)}
             >
               <div className="timeline__year">{m.year}</div>
               <div className="timeline__content">

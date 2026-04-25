@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import Grainient from './Grainient'
 import '../styles/Historia.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -151,19 +152,64 @@ export default function Historia() {
           toggleActions: 'play none none none',
         }
       })
+
+      // Stats count-up
+      section.querySelectorAll('.historia__stat-num[data-count]').forEach(el => {
+        const end    = parseInt(el.dataset.count)
+        const prefix = el.dataset.prefix || ''
+        const suffix = el.dataset.suffix || ''
+        const obj    = { val: 0 }
+        gsap.to(obj, {
+          val: end,
+          duration: 1.5,
+          ease: 'power2.out',
+          snap: { val: 1 },
+          onUpdate() {
+            el.textContent = prefix + Math.round(obj.val) + suffix
+          },
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 85%',
+            once: true,
+          },
+        })
+      })
     })
 
     return () => mm.revert()
   }, [])
 
   return (
-    <section ref={sectionRef} className="historia" id="historia">
+    <section ref={sectionRef} className="historia historia--grainient" id="historia">
+      <div className="historia__grainient-bg" aria-hidden="true">
+        <Grainient
+          color1="#B0000B"
+          color2="#FFFFFF"
+          color3="#000000"
+          timeSpeed={0.18}
+          colorBalance={0.53}
+          warpStrength={1.0}
+          warpFrequency={0.5}
+          warpSpeed={1.5}
+          warpAmplitude={5}
+          blendAngle={-24}
+          blendSoftness={0.05}
+          rotationAmount={500.0}
+          noiseScale={1.6}
+          grainAmount={0.08}
+          grainScale={2.0}
+          contrast={1.3}
+          gamma={1.0}
+          saturation={0.85}
+          zoom={0.95}
+        />
+      </div>
 
       {/* Opening */}
       <div className="historia__opening">
         <p className="historia__eyebrow">Nuestra historia</p>
         <h2 className="historia__headline">
-          Tres generaciones.<br />
+          Cuatro generaciones.<br />
           <span className="historia__accent">Una pasión.</span>
         </h2>
         <p className="historia__sub">
@@ -251,7 +297,7 @@ export default function Historia() {
             caracterizó a la primera carnicería.
           </p>
           <p className="historia__chapter-body">
-            Hoy, la tercera generación de la familia García continúa ese
+            Hoy, la cuarta generación de la familia García continúa ese
             legado — sumando tecnología, e-commerce y nuevos formatos sin
             perder la esencia artesanal que nos define.
           </p>
@@ -261,22 +307,22 @@ export default function Historia() {
       {/* Stats */}
       <div className="historia__stats">
         <div className="historia__stat">
-          <span className="historia__stat-num">+60</span>
+          <span className="historia__stat-num" data-count="60" data-prefix="+">+60</span>
           <span className="historia__stat-label">Años en la industria</span>
         </div>
         <div className="historia__stat-divider" />
         <div className="historia__stat">
-          <span className="historia__stat-num">3</span>
+          <span className="historia__stat-num" data-count="4">4</span>
           <span className="historia__stat-label">Generaciones</span>
         </div>
         <div className="historia__stat-divider" />
         <div className="historia__stat">
-          <span className="historia__stat-num">16</span>
+          <span className="historia__stat-num" data-count="16">16</span>
           <span className="historia__stat-label">Sucursales en Juárez</span>
         </div>
         <div className="historia__stat-divider" />
         <div className="historia__stat">
-          <span className="historia__stat-num">100%</span>
+          <span className="historia__stat-num" data-count="100" data-suffix="%">100%</span>
           <span className="historia__stat-label">Mexicano</span>
         </div>
       </div>
