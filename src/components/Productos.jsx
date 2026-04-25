@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import Grainient from './Grainient'
 import '../styles/Productos.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -102,7 +103,30 @@ export default function Productos() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="productos" id="productos">
+    <section ref={sectionRef} className="productos productos--grainient" id="productos">
+      <div className="productos__grainient-bg" aria-hidden="true">
+        <Grainient
+          color1="#B0000B"
+          color2="#FFFFFF"
+          color3="#000000"
+          timeSpeed={0.18}
+          colorBalance={0.53}
+          warpStrength={1.0}
+          warpFrequency={0.5}
+          warpSpeed={1.5}
+          warpAmplitude={5}
+          blendAngle={-24}
+          blendSoftness={0.05}
+          rotationAmount={500.0}
+          noiseScale={1.6}
+          grainAmount={0.09}
+          grainScale={2.0}
+          contrast={1.35}
+          gamma={1.0}
+          saturation={0.85}
+          zoom={0.95}
+        />
+      </div>
 
       <div className="productos__hero-text">
         <p className="productos__eyebrow">Catálogo Completo</p>

@@ -4,6 +4,23 @@
   padding-bottom: clamp(60px, 8vw, 120px);
 }
 
+.productos--grainient {
+  position: relative;
+}
+
+.productos__grainient-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.18;
+}
+
+.productos--grainient > *:not(.productos__grainient-bg) {
+  position: relative;
+  z-index: 1;
+}
+
 /* Hero text */
 .productos__hero-text {
   text-align: center;
