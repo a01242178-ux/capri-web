@@ -108,7 +108,7 @@ export default function Hero() {
         <a
           href="#productos"
           className="hero__cta"
-          onClick={(e) => { e.preventDefault(); document.getElementById('productos')?.scrollIntoView({ behavior: 'smooth' }) }}
+          onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent('capri:navigate', { detail: 'productos' })) }}
         >
           Conoce nuestros productos
         </a>

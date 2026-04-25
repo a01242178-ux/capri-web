@@ -56,7 +56,13 @@
   white-space: nowrap;
 }
 
-.header-nav a:hover {
+.header-nav a:hover,
+.header-nav a.is-active {
+  color: var(--color-red-capri);
+  border-bottom-color: var(--color-red-capri);
+}
+
+.header-mobile-link.is-active {
   color: var(--color-red-capri);
   border-bottom-color: var(--color-red-capri);
 }

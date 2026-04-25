@@ -105,7 +105,7 @@ export default function Timeline() {
         <a
           href="#quienes-somos"
           className="timeline__cta-btn"
-          onClick={(e) => { e.preventDefault(); document.getElementById('quienes-somos')?.scrollIntoView({ behavior: 'smooth' }) }}
+          onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent('capri:navigate', { detail: 'quienes-somos' })) }}
         >
           Ver más sobre quiénes somos →
         </a>

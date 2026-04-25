@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import IntroVideo from './components/IntroVideo'
 import Header from './components/Header'
 import Hero from './components/Hero'
@@ -11,66 +12,70 @@ import Sucursales from './components/Sucursales'
 import Blog from './components/Blog'
 import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
-import IntroOpcion1 from './components/IntroOpcion1'
-import IntroOpcion2 from './components/IntroOpcion2'
-import { useState, useEffect } from 'react'
-
-function getOverrideVariant() {
-  if (typeof window === 'undefined') return null
-  const p = new URLSearchParams(window.location.search).get('intro')
-  return p === '1' || p === '2' ? p : null
-}
 
 export default function App() {
-  const variant = getOverrideVariant()
-  const [legacyIntroDone, setLegacyIntroDone] = useState(false)
+  const [currentPage, setCurrentPage] = useState('inicio')
+  const [introDone, setIntroDone] = useState(false)
 
-  // Legacy variants remain at /?intro=1 and /?intro=2
-  if (variant === '1' || variant === '2') {
-    const Intro = variant === '1' ? IntroOpcion1 : IntroOpcion2
-    return (
-      <div className="app">
-        {!legacyIntroDone && <Intro onComplete={() => setLegacyIntroDone(true)} />}
-        <Header />
-        <section id="inicio"><Hero /></section>
-        <Timeline />
-        <ProductGrid />
-        <Historia />
-        <Sucursales />
-        <Footer />
-        <WhatsAppButton />
-      </div>
-    )
-  }
+  // Scroll to top on every page change
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' })
+  }, [currentPage])
 
-  // Default experience
+  // Listen for navigate events from child components
+  useEffect(() => {
+    const handler = (e) => setCurrentPage(e.detail)
+    window.addEventListener('capri:navigate', handler)
+    return () => window.removeEventListener('capri:navigate', handler)
+  }, [])
+
   return (
     <div className="app">
-      <IntroVideo />
-      <Header />
+      {!introDone && (
+        <IntroVideo onComplete={() => setIntroDone(true)} />
+      )}
 
-      {/* INICIO — termina en la barra roja de Historia */}
-      <section id="inicio">
-        <Hero />
-        <Timeline />
-        <ProductGrid />
-        <BranchMap />
-        <Historia />
-      </section>
+      <Header currentPage={currentPage} setCurrentPage={setCurrentPage} />
 
-      {/* QUIÉNES SOMOS */}
-      <QuienesSomos />
+      {currentPage === 'inicio' && (
+        <>
+          <Hero />
+          <Timeline />
+          <ProductGrid />
+          <BranchMap />
+          <Historia />
+          <Footer />
+        </>
+      )}
 
-      {/* PRODUCTOS */}
-      <Productos />
+      {currentPage === 'quienes-somos' && (
+        <>
+          <QuienesSomos />
+          <Footer />
+        </>
+      )}
 
-      {/* SUCURSALES */}
-      <Sucursales />
+      {currentPage === 'productos' && (
+        <>
+          <Productos />
+          <Footer />
+        </>
+      )}
 
-      {/* BLOG */}
-      <Blog />
+      {currentPage === 'sucursales' && (
+        <>
+          <Sucursales />
+          <Footer />
+        </>
+      )}
 
-      <Footer />
+      {currentPage === 'blog' && (
+        <>
+          <Blog />
+          <Footer />
+        </>
+      )}
+
       <WhatsAppButton />
     </div>
   )

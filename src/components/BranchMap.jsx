@@ -57,7 +57,7 @@ export default function BranchMap() {
 
   const scrollToSucursales = (e) => {
     e.preventDefault()
-    document.getElementById('sucursales')?.scrollIntoView({ behavior: 'smooth' })
+    window.dispatchEvent(new CustomEvent('capri:navigate', { detail: 'sucursales' }))
   }
 
   return (
