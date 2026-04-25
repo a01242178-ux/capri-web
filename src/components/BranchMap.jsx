@@ -1,11 +1,11 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import '../styles/BranchMap.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const driveImg = (id) => `https://drive.google.com/thumbnail?id=${id}&sz=w1200`
+const driveImg = (id) => `https://drive.google.com/thumbnail?id=${id}&sz=w1400`
 
 const mainBranches = [
   { id: 1, name: 'Guadalupe Victoria' },
@@ -16,20 +16,9 @@ const mainBranches = [
   { id: 6, name: 'Valle del Sol' },
 ]
 
-const heroPhotos = [
-  { src: driveImg('1k57CejUWkZa1JYZclFuyT_RUD3YMoW-Q'), alt: 'Sucursal Ejército Nacional — Capri Carnes' },
-  { src: driveImg('1F4hvNOkVz4ZvW6oOw3BtiYTtmwzK0Z1S'), alt: 'Sucursal Santiago Blancas — Capri Carnes' },
-]
-
 export default function BranchMap() {
   const sectionRef = useRef(null)
   const gridRef = useRef(null)
-  const [photoIdx, setPhotoIdx] = useState(0)
-
-  useEffect(() => {
-    const id = setInterval(() => setPhotoIdx(i => (i + 1) % heroPhotos.length), 5000)
-    return () => clearInterval(id)
-  }, [])
 
   useEffect(() => {
     const section = sectionRef.current
@@ -43,18 +32,14 @@ export default function BranchMap() {
         scrollTrigger: { trigger: section, start: 'top 80%', toggleActions: 'play none none none' }
       })
       gsap.from(grid.querySelectorAll('.branch-card'), {
-        opacity: 0, y: 48, stagger: 0.045, duration: 0.55, ease: 'power3.out',
-        scrollTrigger: { trigger: grid, start: 'top 82%', toggleActions: 'play none none none' }
-      })
-      gsap.from(section.querySelector('.branches__cta'), {
-        opacity: 0, y: 24, duration: 0.6, ease: 'power2.out',
-        scrollTrigger: { trigger: section.querySelector('.branches__cta'), start: 'top 92%', toggleActions: 'play none none none' }
+        opacity: 0, y: 36, stagger: 0.06, duration: 0.55, ease: 'power3.out',
+        scrollTrigger: { trigger: grid, start: 'top 85%', toggleActions: 'play none none none' }
       })
     })
     return () => mm.revert()
   }, [])
 
-  const scrollToSucursales = (e) => {
+  const goToSucursales = (e) => {
     e.preventDefault()
     window.dispatchEvent(new CustomEvent('capri:navigate', { detail: 'sucursales' }))
   }
@@ -62,17 +47,17 @@ export default function BranchMap() {
   return (
     <section ref={sectionRef} className="branches" id="branches">
 
-      <div className="branches__hero">
-        {heroPhotos.map((p, i) => (
-          <img
-            key={i}
-            src={p.src}
-            alt={p.alt}
-            className={`branches__hero-img${photoIdx === i ? ' is-active' : ''}`}
-            loading="lazy"
-          />
-        ))}
-        <div className="branches__hero-overlay">
+      {/* Foto EJERCITO con overlay + texto + cards encima */}
+      <div className="branches__photo-wrap">
+        <img
+          src={driveImg('1k57CejUWkZa1JYZclFuyT_RUD3YMoW-Q')}
+          alt="Sucursal Ejército Nacional — Capri Carnes"
+          className="branches__photo"
+          loading="lazy"
+        />
+        <div className="branches__overlay" />
+
+        <div className="branches__content">
           <div className="branches__intro">
             <div className="branches__eyebrow">Sucursales</div>
             <h2 className="branches__title">
@@ -82,26 +67,23 @@ export default function BranchMap() {
               16+ sucursales en Ciudad Juárez. Calidad y servicio al alcance de cada familia.
             </p>
           </div>
+
+          <div ref={gridRef} className="branches__grid">
+            {mainBranches.map((b) => (
+              <article className="branch-card" key={b.id}>
+                <h3 className="branch-card__name">{b.name}</h3>
+              </article>
+            ))}
+          </div>
+
+          <div className="branches__cta">
+            <a href="#sucursales" className="branches__btn" onClick={goToSucursales}>
+              Ver más sucursales →
+            </a>
+          </div>
         </div>
       </div>
 
-      <div ref={gridRef} className="branches__grid">
-        {mainBranches.map((b) => (
-          <article className="branch-card" key={b.id}>
-            <h3 className="branch-card__name">{b.name}</h3>
-          </article>
-        ))}
-      </div>
-
-      <div className="branches__cta">
-        <a
-          href="#sucursales"
-          className="branches__btn"
-          onClick={scrollToSucursales}
-        >
-          Ver más sucursales →
-        </a>
-      </div>
     </section>
   )
 }
