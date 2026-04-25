@@ -6,6 +6,8 @@ import '../styles/QuienesSomos.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
+const driveImg = (id) => `https://drive.google.com/thumbnail?id=${id}&sz=w1200`
+
 const chapters = [
   {
     id: 'fundacion',
@@ -15,7 +17,7 @@ const chapters = [
       'Todo empezó con Don Antonio García Villanueva en el Mercado Juárez, Ciudad Juárez, Chihuahua. Una carnicería pequeña, de barrio, con el compromiso de ofrecer siempre lo mejor.',
       'A los 21 años, Don Antonio tomó las riendas del negocio familiar y comenzó la expansión que definiría el futuro de Capri Carnes. Su visión: llevar calidad a cada rincón de la ciudad.',
     ],
-    image: '/images/historia/primera-sucursal-neon.jpg',
+    image: driveImg('1yGTEFtEwAjpBQEZMPAdxy31noc_Q6XZR'),
     imageAlt: 'Don Antonio García Villanueva — Fundador de Capri Carnes',
   },
   {
@@ -26,8 +28,8 @@ const chapters = [
       'En los años 60, nuestra sucursal más emblemática tenía dos pisos. El segundo se llamaba "La Terraza Social Capri" — donde tocaban las mejores orquestas de México.',
       'La gente empezó a llamarla "la carnicería Capri". Ese nombre se quedó grabado en la memoria colectiva de Juárez. En 1998 se volvió oficial para todas las sucursales: un legado nacido de la música, la carne y el orgullo juarense.',
     ],
-    image: '/images/historia/primera-sucursal-neon.jpg',
-    imageAlt: 'La Terraza Social Capri — Ciudad Juárez',
+    image: driveImg('1zXEVoIgK-j3AuDRWsZlrxM02DKZg75Ku'),
+    imageAlt: 'La Terraza Social Capri — Primera sucursal, Ciudad Juárez',
   },
   {
     id: 'juarez',
@@ -37,8 +39,8 @@ const chapters = [
       'Durante décadas, Capri Carnes fue creciendo sucursal a sucursal, zona a zona. Desde el centro histórico hasta las colonias más alejadas — siempre con la misma calidad.',
       'Hoy contamos con más de 16 sucursales en toda la ciudad. Cada punto lleva el mismo compromiso que caracterizó a la primera carnicería.',
     ],
-    image: '/images/fotos/dsc0001-web.jpg',
-    imageAlt: 'Sucursales Capri Carnes en Ciudad Juárez',
+    image: driveImg('1k57CejUWkZa1JYZclFuyT_RUD3YMoW-Q'),
+    imageAlt: 'Sucursal Ejército Nacional — Capri Carnes',
   },
   {
     id: 'modernizacion',
@@ -48,7 +50,7 @@ const chapters = [
       'En 2022 comenzamos una transformación profunda de nuestra infraestructura. Nuevas instalaciones, procesos más eficientes, estándares más altos — sin perder la esencia artesanal que nos define.',
       'La sucursal Santiago Blancas fue la primera en estrenar el nuevo concepto: espaciosa, moderna, con la mejor selección de cortes de la ciudad.',
     ],
-    image: '/images/fotos/dsc0017-web.jpg',
+    image: driveImg('1F4hvNOkVz4ZvW6oOw3BtiYTtmwzK0Z1S'),
     imageAlt: 'Sucursal Santiago Blancas — Capri Carnes renovada',
   },
   {
@@ -71,8 +73,12 @@ const chapters = [
       'En 1985 adquirimos nuestro rancho en Chihuahua, marcando el inicio de nuestra pasión por la ganadería. Hoy trabajamos de la mano con ganaderos del norte de Chihuahua y la zona fronteriza.',
       'Seleccionamos cada animal con cuidado, respaldando la tradición ganadera de una región donde hacer las cosas bien es la norma.',
     ],
-    image: '/images/fotos/rancho.jpg',
-    imageAlt: 'Rancho Capri Carnes — Chihuahua',
+    image: driveImg('1rEquuUN8FzcDsqiFdQf3Jyv5ZCgvtiGh'),
+    imageAlt: 'Rancho Capri Carnes — Vacas en pasto, Chihuahua',
+    extraImages: [
+      { src: driveImg('1uIodc9cZtpttp-Wo4AgzaCALk1XcA-gO'), alt: 'Arreando a caballo — Capri Carnes' },
+      { src: driveImg('14SQcoVf631y2iW06wKZ8cYWZo_I4LuC2'), alt: 'Rastro — Proceso de beneficio Capri Carnes' },
+    ],
   },
 ]
 
@@ -185,8 +191,11 @@ export default function QuienesSomos() {
               </div>
             )}
           </div>
-          <div className="qs__chapter-visual">
+          <div className={`qs__chapter-visual${ch.extraImages ? ' qs__chapter-visual--multi' : ''}`}>
             <img src={ch.image} alt={ch.imageAlt} loading="lazy" />
+            {ch.extraImages && ch.extraImages.map((ei, j) => (
+              <img key={j} src={ei.src} alt={ei.alt} loading="lazy" />
+            ))}
           </div>
         </div>
       ))}

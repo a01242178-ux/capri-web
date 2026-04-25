@@ -19,9 +19,11 @@ export default function Sucursales() {
   const sectionRef = useRef(null)
   const [photoIdx, setPhotoIdx] = useState(0)
 
+  const driveImg = (id) => `https://drive.google.com/thumbnail?id=${id}&sz=w1200`
+
   const heroPhotos = [
-    { src: '/images/fotos/dsc0001-web.jpg', alt: 'Sucursal Ejército Nacional — Capri Carnes' },
-    { src: '/images/fotos/dsc0017-web.jpg', alt: 'Sucursal Santiago Blancas — Capri Carnes' },
+    { src: driveImg('1k57CejUWkZa1JYZclFuyT_RUD3YMoW-Q'), alt: 'Sucursal Ejército Nacional — Capri Carnes' },
+    { src: driveImg('1F4hvNOkVz4ZvW6oOw3BtiYTtmwzK0Z1S'), alt: 'Sucursal Santiago Blancas — Capri Carnes' },
   ]
 
   // Auto-rotate hero photo every 5s

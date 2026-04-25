@@ -4,6 +4,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Grainient from './Grainient'
 import '../styles/Historia.css'
 
+const driveImg = (id) => `https://drive.google.com/thumbnail?id=${id}&sz=w1200`
+
 gsap.registerPlugin(ScrollTrigger)
 
 export default function Historia() {
@@ -242,8 +244,8 @@ export default function Historia() {
           <div className="historia__photo-wrap">
             <img
               className="historia__neon-img"
-              src="/images/historia/primera-sucursal-neon.jpg"
-              alt="Primera sucursal Capri Carnes — Ciudad Juárez, letrero encendido"
+              src={driveImg('1V9ShngOB60IkE_Qg8EJVhblg9bLPV7N6')}
+              alt="Don Antonio García — Primeras sucursales Capri Carnes"
               loading="lazy"
             />
             <div className="historia__photo-caption">
@@ -276,8 +278,8 @@ export default function Historia() {
         <div className="historia__chapter-visual">
           <div className="historia__photo-wrap">
             <img
-              src="/images/historia/rancho-2.jpg"
-              alt="Calidad artesanal en cada corte Capri"
+              src={driveImg('1rEquuUN8FzcDsqiFdQf3Jyv5ZCgvtiGh')}
+              alt="Rancho Capri Carnes — Chihuahua"
               loading="lazy"
             />
             <div className="historia__photo-caption">

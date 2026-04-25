@@ -123,6 +123,23 @@
   transform: scale(1.04);
 }
 
+/* Multi-image (ganadería: 3 fotos) */
+.qs__chapter-visual--multi {
+  display: grid;
+  grid-template-rows: 2fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+}
+
+.qs__chapter-visual--multi img:first-child {
+  grid-column: 1 / -1;
+  min-height: 240px;
+}
+
+.qs__chapter-visual--multi img {
+  min-height: 140px;
+}
+
 /* App badges */
 .qs__app-badges {
   display: flex;
