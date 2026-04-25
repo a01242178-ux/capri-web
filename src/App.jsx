@@ -8,6 +8,7 @@ import Historia from './components/Historia'
 import QuienesSomos from './components/QuienesSomos'
 import Productos from './components/Productos'
 import Sucursales from './components/Sucursales'
+import RanchoSection from './components/RanchoSection'
 import Blog from './components/Blog'
 import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
@@ -56,6 +57,7 @@ export default function App() {
         <ProductGrid />
         <BranchMap />
         <Historia />
+        <RanchoSection />
       </section>
 
       {/* QUIÉNES SOMOS */}

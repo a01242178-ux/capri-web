@@ -221,3 +221,29 @@
     display: none;
   }
 }
+
+/* ── CTA ────────────────────────────────────── */
+.timeline__cta {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 28px 24px 40px;
+}
+
+.timeline__cta-btn {
+  display: inline-block;
+  padding: 12px 28px;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  border-radius: 4px;
+  color: #fff;
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.timeline__cta-btn:hover {
+  background: rgba(176, 0, 11, 0.85);
+  border-color: #B0000B;
+}

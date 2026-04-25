@@ -24,6 +24,10 @@
   will-change: transform;
 }
 
+.hero__bg-img--ribeye {
+  object-position: center center;
+}
+
 .hero__overlay {
   position: absolute;
   inset: 0;

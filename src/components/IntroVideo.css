@@ -7,10 +7,10 @@
   position: relative;
   width: 100%;
   height: 180vh;
-  /* No background — when the sticky exits, the next section shows through */
+  background: #000;
 }
 
-/* ── Sticky viewport — driven by --p (0 → 1) ───── */
+/* ── Sticky viewport ────────────────────────────── */
 
 .intro-video__sticky {
   position: sticky;
@@ -19,17 +19,7 @@
   height: 100vh;
   overflow: hidden;
   background: #000;
-
-  /* Sits above the header (z-index 100) while it's in view */
   z-index: 101;
-
-  /* Scroll-driven exit: zoom + clip-path iris close + fade */
-  --p: 0;
-  opacity: calc(1 - var(--p) * 1.1);
-  transform: scale(calc(1 + var(--p) * 0.07));
-  clip-path: inset(calc(var(--p) * 7%) round calc(var(--p) * 28px));
-  will-change: opacity, transform, clip-path;
-  transition: none;
 }
 
 /* ── Hidden SVG filter ──────────────────────────── */
@@ -49,7 +39,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center 20%;
   pointer-events: none;
   display: block;
 }
@@ -93,7 +83,6 @@
 .intro-video__logo-stage {
   position: sticky;
   top: 0;
-  /* Negative margin pulls it back up to overlap the video */
   margin-top: -100vh;
   height: 100vh;
   width: 100%;
@@ -102,19 +91,44 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.intro-video__logo-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   opacity: 0;
   transform: scale(0.2);
   will-change: opacity, transform;
+  background: rgba(0, 0, 0, 0.68);
+  padding: 28px 52px;
+  border-radius: 10px;
 }
 
 .intro-video__logo {
-  width: min(600px, 72vw);
+  width: min(1200px, 88vw);
   height: auto;
-  max-height: 30vh;
+  max-height: 60vh;
   object-fit: contain;
   display: block;
+}
+
+/* ── Corner logo — top-right watermark ─────────── */
+
+.intro-video__corner {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  z-index: 5;
+  pointer-events: none;
   mix-blend-mode: multiply;
-  filter: drop-shadow(0 4px 24px rgba(0, 0, 0, 0.4));
+}
+
+.intro-video__corner-logo {
+  width: min(200px, 26vw);
+  height: auto;
+  display: block;
+  filter: contrast(1.6) saturate(1.4);
 }
 
 /* ── Scroll cue ─────────────────────────────────── */
@@ -184,13 +198,7 @@
   }
 
   .intro-video__logo {
-    max-height: 14vh;
-  }
-
-  /* Softer exit on small screens */
-  .intro-video__sticky {
-    clip-path: inset(calc(var(--p) * 4%) round calc(var(--p) * 16px));
-    transform: scale(calc(1 + var(--p) * 0.04));
+    max-height: 28vh;
   }
 }
 
@@ -199,11 +207,6 @@
 @media (prefers-reduced-motion: reduce) {
   .intro-video { height: 100vh }
   .intro-video__grain { animation: none }
-  .intro-video__logo { animation: none }
   .intro-video__cue { animation: none }
-  .intro-video__sticky {
-    opacity: 1;
-    transform: none;
-    clip-path: none;
-  }
+  .intro-video__logo-inner { opacity: 1; transform: none; }
 }

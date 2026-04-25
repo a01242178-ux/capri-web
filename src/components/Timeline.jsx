@@ -56,7 +56,7 @@ export default function Timeline() {
       {/* Video background */}
       <div className="timeline__video-bg">
         <video
-          src="/videos/rancho.mp4"
+          src="https://drive.google.com/uc?export=download&id=12RKJJdUzV8DGjPeBnba6-cH8TeTkpNTX"
           autoPlay
           muted
           loop
@@ -99,6 +99,16 @@ export default function Timeline() {
       <div className="timeline__scroll-hint">
         <span>Desliza</span>
         <span>→</span>
+      </div>
+
+      <div className="timeline__cta">
+        <a
+          href="#quienes-somos"
+          className="timeline__cta-btn"
+          onClick={(e) => { e.preventDefault(); document.getElementById('quienes-somos')?.scrollIntoView({ behavior: 'smooth' }) }}
+        >
+          Ver más sobre quiénes somos →
+        </a>
       </div>
 
     </section>

@@ -198,11 +198,11 @@ export default function Historia() {
           blendSoftness={0.05}
           rotationAmount={500.0}
           noiseScale={1.6}
-          grainAmount={0.08}
+          grainAmount={0.1}
           grainScale={2.0}
-          contrast={1.3}
+          contrast={1.4}
           gamma={1.0}
-          saturation={0.85}
+          saturation={0.9}
           zoom={0.95}
         />
       </div>
@@ -218,92 +218,6 @@ export default function Historia() {
           Lo que comenzó como una carnicería familiar en el centro de Juárez
           se convirtió en la marca que hoy conocen miles de familias chihuahuenses.
         </p>
-      </div>
-
-      {/* El fundador */}
-      <div className="historia__chapter historia__chapter--founder">
-        <div className="historia__chapter-text">
-          <span className="historia__chapter-label">Primera generación</span>
-          <h3 className="historia__chapter-title">
-            Antonio García Villanueva
-          </h3>
-          <p className="historia__chapter-body">
-            Los inicios de Capri Carnes se remontan a tres pequeñas sucursales
-            en el centro de Ciudad Juárez. A los <strong>21 años</strong>,
-            Antonio García Villanueva tomó las riendas del negocio familiar,
-            marcando la primera gran sucesión de la familia García en la
-            industria cárnica.
-          </p>
-          <p className="historia__chapter-body">
-            Con visión de crecimiento, adquirió dos sucursales más y comenzó
-            la expansión que definiría el futuro de la marca. En 1998, todas
-            las sucursales homologaron su nombre: <strong>Capri Carnes</strong>.
-          </p>
-        </div>
-        <div className="historia__chapter-visual">
-          <div className="historia__photo-wrap">
-            <img
-              className="historia__neon-img"
-              src={driveImg('1V9ShngOB60IkE_Qg8EJVhblg9bLPV7N6')}
-              alt="Don Antonio García — Primeras sucursales Capri Carnes"
-              loading="lazy"
-            />
-            <div className="historia__photo-caption">
-              La primera sucursal — Ciudad Juárez, años 60
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* ¿Por qué Capri? */}
-      <div className="historia__spotlight">
-        <div className="historia__spotlight-inner">
-          <span className="historia__spotlight-tag">¿Por qué "Capri"?</span>
-          <blockquote className="historia__quote">
-            "En los años 60, nuestra sucursal Capri tenía dos pisos.
-            El segundo se llamaba <em>La Terraza Social Capri</em> —
-            donde tocaban las mejores orquestas de México."
-          </blockquote>
-          <p className="historia__spotlight-body">
-            La gente empezó a llamarla <strong>"la carnicería Capri"</strong>.
-            Ese nombre se quedó grabado. En 1998 se volvió oficial para todas
-            las sucursales de la familia — un legado nacido de la música,
-            la carne y el orgullo juarense.
-          </p>
-        </div>
-      </div>
-
-      {/* Expansión */}
-      <div className="historia__chapter historia__chapter--second">
-        <div className="historia__chapter-visual">
-          <div className="historia__photo-wrap">
-            <img
-              src={driveImg('1rEquuUN8FzcDsqiFdQf3Jyv5ZCgvtiGh')}
-              alt="Rancho Capri Carnes — Chihuahua"
-              loading="lazy"
-            />
-            <div className="historia__photo-caption">
-              Calidad artesanal en cada corte
-            </div>
-          </div>
-        </div>
-        <div className="historia__chapter-text">
-          <span className="historia__chapter-label">Crecimiento</span>
-          <h3 className="historia__chapter-title">
-            Juárez entera<br />nos conoce
-          </h3>
-          <p className="historia__chapter-body">
-            Durante décadas, Capri Carnes fue creciendo sucursal a sucursal,
-            zona a zona, hasta estar presente en cada rincón de Ciudad Juárez.
-            Cada punto de venta lleva el mismo compromiso de calidad que
-            caracterizó a la primera carnicería.
-          </p>
-          <p className="historia__chapter-body">
-            Hoy, la cuarta generación de la familia García continúa ese
-            legado — sumando tecnología, e-commerce y nuevos formatos sin
-            perder la esencia artesanal que nos define.
-          </p>
-        </div>
       </div>
 
       {/* Stats */}

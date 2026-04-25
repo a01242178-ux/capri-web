@@ -14,6 +14,7 @@ const mainBranches = [
   { id: 4, name: 'Arizona' },
   { id: 5, name: 'Jilotepec' },
   { id: 6, name: 'Valle del Sol' },
+  { id: 7, name: 'Talamas' },
 ]
 
 const heroPhotos = [

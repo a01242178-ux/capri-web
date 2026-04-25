@@ -87,11 +87,11 @@ export default function Hero() {
       <div className="hero__bg">
         <img
           ref={imgRef}
-          src="/images/fotos/dsc0017-web.jpg"
+          src="https://drive.google.com/thumbnail?id=1SeIwD3fttPDcodYRgYPJaBxxDwLPC17h&sz=w1600"
           alt=""
           aria-hidden="true"
           loading="eager"
-          className="hero__bg-img"
+          className="hero__bg-img hero__bg-img--ribeye"
         />
       </div>
       <div className="hero__overlay" />
@@ -103,9 +103,15 @@ export default function Hero() {
           <span className="hero__line"><SplitChars text="A Tu Mesa" /></span>
         </h1>
         <p className="hero__sub">
-          Tres generaciones seleccionando los mejores cortes. Calidad premium al alcance de cada familia juarense.
+          Cuatro generaciones seleccionando los mejores cortes. Calidad premium al alcance de cada familia juarense.
         </p>
-        <a href="#products" className="hero__cta">Conoce nuestros productos</a>
+        <a
+          href="#productos"
+          className="hero__cta"
+          onClick={(e) => { e.preventDefault(); document.getElementById('productos')?.scrollIntoView({ behavior: 'smooth' }) }}
+        >
+          Conoce nuestros productos
+        </a>
       </div>
     </section>
   )

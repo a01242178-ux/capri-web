@@ -150,12 +150,11 @@ export default function ProductGrid() {
 
       <div className="product-grid__cta">
         <a
-          href="https://wa.me/526562191234?text=Hola%20Capri%20Carnes%2C%20quiero%20ordenar"
+          href="#productos"
           className="product-grid__btn"
-          target="_blank"
-          rel="noopener noreferrer"
+          onClick={(e) => { e.preventDefault(); document.getElementById('productos')?.scrollIntoView({ behavior: 'smooth' }) }}
         >
-          Ordena por WhatsApp
+          Conoce nuestros productos →
         </a>
       </div>
     </section>
