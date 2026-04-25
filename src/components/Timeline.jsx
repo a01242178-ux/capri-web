@@ -56,7 +56,7 @@ export default function Timeline() {
       {/* Video background */}
       <div className="timeline__video-bg">
         <video
-          src="https://drive.google.com/uc?export=download&id=12RKJJdUzV8DGjPeBnba6-cH8TeTkpNTX"
+          src="/videos/rancho.mp4"
           autoPlay
           muted
           loop
