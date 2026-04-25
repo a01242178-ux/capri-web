@@ -141,21 +141,6 @@ export default function QuienesSomos() {
         )
       }
 
-      // Neon text "capri." — scrub sync: entra, se mantiene, sale
-      const neonText = section.querySelector('.qs__neon-text')
-      if (neonText && neonTrigger) {
-        gsap.timeline({
-          scrollTrigger: {
-            trigger: neonTrigger,
-            start: 'top 65%',
-            end: 'bottom 20%',
-            scrub: 1.2,
-          }
-        })
-          .to(neonText, { opacity: 1, duration: 0.25, ease: 'power2.in' })
-          .to(neonText, { opacity: 1, duration: 0.5 })
-          .to(neonText, { opacity: 0, duration: 0.25, ease: 'power2.out' })
-      }
 
       // Spotlight quote — neon rojo pulsante
       const quote = section.querySelector('.qs__spotlight-quote')
@@ -267,7 +252,6 @@ export default function QuienesSomos() {
                   loading="lazy"
                   className="qs__neon-img"
                 />
-                <div className="qs__neon-text" aria-hidden="true">capri.</div>
               </div>
             ) : (
               <>
