@@ -122,13 +122,13 @@ export default function QuienesSomos() {
         }
       })
 
-      // Neon photo — flicker ON → hold → flicker OFF sincronizado con scroll
-      const neonImg = section.querySelector('.qs__neon-img')
+      // Neon photo — flicker ON → hold → OFF sobre la foto real (letras neón vs silueta oscura)
+      const neonImg     = section.querySelector('.qs__neon-img')
       const neonTrigger = section.querySelector('.qs__chapter--terraza')
       if (neonImg && neonTrigger) {
-        const off = 'brightness(0.1) saturate(0) contrast(1.1)'
-        const on  = 'brightness(1.05) saturate(1.45) contrast(1.05)'
-        const f   = (b, s) => `brightness(${b}) saturate(${s}) contrast(1.05)`
+        const off = 'brightness(0.20) saturate(0.05) contrast(1.05)'
+        const on  = 'brightness(1.1) saturate(1.9) contrast(1.08)'
+        const f   = (b, s) => `brightness(${b}) saturate(${s}) contrast(1.07)`
 
         const tl = gsap.timeline({
           scrollTrigger: {
@@ -141,21 +141,21 @@ export default function QuienesSomos() {
 
         // Flicker ON — ~25% del scroll
         tl.set(neonImg, { filter: off })
-          .to(neonImg, { filter: f(0.45, 0.2), duration: 0.3, ease: 'none' })
-          .to(neonImg, { filter: off,           duration: 0.2, ease: 'none' })
-          .to(neonImg, { filter: f(0.85, 0.7),  duration: 0.25, ease: 'none' })
-          .to(neonImg, { filter: f(0.2, 0.05),  duration: 0.15, ease: 'none' })
-          .to(neonImg, { filter: f(1.0, 1.2),   duration: 0.2,  ease: 'none' })
-          .to(neonImg, { filter: f(0.3, 0.1),   duration: 0.12, ease: 'none' })
+          .to(neonImg, { filter: f(0.55, 0.6),  duration: 0.30, ease: 'none' })
+          .to(neonImg, { filter: off,            duration: 0.20, ease: 'none' })
+          .to(neonImg, { filter: f(0.90, 1.3),   duration: 0.25, ease: 'none' })
+          .to(neonImg, { filter: f(0.25, 0.08),  duration: 0.15, ease: 'none' })
+          .to(neonImg, { filter: f(1.05, 1.75),  duration: 0.20, ease: 'none' })
+          .to(neonImg, { filter: f(0.35, 0.12),  duration: 0.12, ease: 'none' })
           .to(neonImg, { filter: on,             duration: 0.28, ease: 'power1.out' })
           // Hold encendido — ~50% del scroll
           .to(neonImg, { filter: on, duration: 3 })
           // Flicker OFF — ~25% del scroll
-          .to(neonImg, { filter: f(0.75, 0.9),  duration: 0.2,  ease: 'none' })
+          .to(neonImg, { filter: f(0.80, 1.4),   duration: 0.20, ease: 'none' })
           .to(neonImg, { filter: on,             duration: 0.15, ease: 'none' })
-          .to(neonImg, { filter: f(0.15, 0.05), duration: 0.25, ease: 'none' })
-          .to(neonImg, { filter: f(0.55, 0.4),  duration: 0.2,  ease: 'none' })
-          .to(neonImg, { filter: off,            duration: 0.3,  ease: 'power1.in' })
+          .to(neonImg, { filter: f(0.20, 0.06),  duration: 0.25, ease: 'none' })
+          .to(neonImg, { filter: f(0.60, 0.8),   duration: 0.20, ease: 'none' })
+          .to(neonImg, { filter: off,            duration: 0.30, ease: 'power1.in' })
       }
 
 

@@ -190,9 +190,10 @@
   }
 }
 
-/* ── Neon photo (Terraza) ──────────────────── */
+/* ── Neon photo (Terraza) — estado inicial OFF, GSAP anima el filter ── */
 .qs__neon-img {
-  filter: brightness(0.15) saturate(0) contrast(1.1);
+  filter: brightness(0.20) saturate(0.05) contrast(1.05);
+  will-change: filter;
 }
 
 /* ── Spotlight neon quote ───────────────────── */
@@ -267,36 +268,6 @@
   display: block;
 }
 
-/* Texto "capri." neón superpuesto — alineado sobre el letrero real */
-.qs__neon-text {
-  position: absolute;
-  bottom: 52%;
-  left: 0;
-  right: 0;
-  z-index: 4;
-  opacity: 0;
-  pointer-events: none;
-  user-select: none;
-  text-align: center;
-
-  font-family: 'Montserrat', system-ui, sans-serif;
-  font-weight: 900;
-  font-style: italic;
-  font-size: clamp(52px, 13vw, 140px);
-  text-transform: lowercase;
-  letter-spacing: -0.02em;
-  line-height: 1;
-
-  color: rgba(255, 60, 60, 0.95);
-  text-shadow:
-    0 0 4px #fff,
-    0 0 8px #ff2020,
-    0 0 18px #ff2020,
-    0 0 36px #B0000B,
-    0 0 70px #B0000B,
-    0 0 120px rgba(176, 0, 11, 0.5);
-  -webkit-text-stroke: 1px rgba(255, 120, 120, 0.6);
-}
 
 @media (max-width: 768px) {
   .qs__chapter-visual--neon {
