@@ -95,9 +95,8 @@
 
 .timeline__track::-webkit-scrollbar { display: none; }
 
-/* Red horizontal spine */
-.timeline__track::before {
-  content: '';
+/* Red horizontal spine — JS element so GSAP can animate scaleX */
+.timeline__spine {
   position: absolute;
   left: clamp(24px, 5vw, 60px);
   right: clamp(24px, 5vw, 60px);
@@ -105,6 +104,7 @@
   height: 2px;
   background: #B0000B;
   opacity: 0.6;
+  pointer-events: none;
 }
 
 /* ── Individual node ──────────────────────────── */

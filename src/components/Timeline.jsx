@@ -20,30 +20,37 @@ const milestones = [
 export default function Timeline() {
   const sectionRef = useRef(null)
   const trackRef   = useRef(null)
+  const spineRef   = useRef(null)
 
   useEffect(() => {
     const section = sectionRef.current
     const track   = trackRef.current
+    const spine   = spineRef.current
     if (!section || !track) return
 
     const mm = gsap.matchMedia()
 
     mm.add('(prefers-reduced-motion: no-preference)', () => {
+      // Intro text: eyebrow → title → lead, cada uno por separado
+      const introEls = section.querySelectorAll('.timeline__eyebrow, .timeline__title, .timeline__lead')
+      gsap.from(introEls, {
+        opacity: 0, y: 32, stagger: 0.14, duration: 0.75, ease: 'power3.out',
+        scrollTrigger: { trigger: section, start: 'top 78%', toggleActions: 'play none none none' },
+      })
+
+      // Spine crece de izquierda a derecha
+      if (spine) {
+        gsap.from(spine, {
+          scaleX: 0, transformOrigin: 'left center', duration: 1.1, ease: 'power2.inOut',
+          scrollTrigger: { trigger: section, start: 'top 72%', toggleActions: 'play none none none' },
+        })
+      }
+
+      // Nodes con x+y stagger
       const nodes = track.querySelectorAll('.timeline__node')
-
-      gsap.set(nodes, { opacity: 0, y: 40 })
-
-      gsap.to(nodes, {
-        opacity: 1,
-        y: 0,
-        stagger: 0.07,
-        duration: 0.6,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 75%',
-          toggleActions: 'play none none none',
-        },
+      gsap.from(nodes, {
+        opacity: 0, y: 28, x: 18, stagger: 0.09, duration: 0.65, ease: 'power3.out',
+        scrollTrigger: { trigger: track, start: 'top 82%', toggleActions: 'play none none none' },
       })
     })
 
@@ -79,6 +86,7 @@ export default function Timeline() {
 
       {/* Horizontal track */}
       <div ref={trackRef} className="timeline__track">
+        <div ref={spineRef} className="timeline__spine" aria-hidden="true" />
         {milestones.map((m, i) => {
           const isLast = i === milestones.length - 1
           return (

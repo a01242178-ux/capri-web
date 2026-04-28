@@ -91,6 +91,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  mix-blend-mode: darken;
 }
 
 .intro-video__logo-inner {
@@ -100,9 +101,6 @@
   opacity: 0;
   transform: scale(0.2);
   will-change: opacity, transform;
-  background: rgba(0, 0, 0, 0.68);
-  padding: 28px 52px;
-  border-radius: 10px;
 }
 
 .intro-video__logo {
@@ -121,7 +119,7 @@
   right: 28px;
   z-index: 5;
   pointer-events: none;
-  mix-blend-mode: multiply;
+  mix-blend-mode: darken;
 }
 
 .intro-video__corner-logo {

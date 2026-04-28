@@ -8,6 +8,66 @@ gsap.registerPlugin(ScrollTrigger)
 
 const driveImg = (id) => `https://drive.google.com/thumbnail?id=${id}&sz=w800`
 
+const productImages = {
+  // RES
+  'Para Deshebrar':                       driveImg('1EKGC31RiAlJ0Mn95pgJpfBrHh6o_voHC'),
+  'Cola de Res':                          driveImg('1fVv6nGf6V8Vl9mmQH0kTQJWlT2HMWW2k'),
+  'Chuleta del 7 y 0':                    driveImg('11eambV-TEF1SWsi9HvwKOoNQCyys-ukb'),
+  'Chuleta de Lomo':                      driveImg('1loi3EbKBDW0BD_3x5nkVcdV0_FX6efda'),
+  'Chuleta de Costilla':                  driveImg('1ssZ4imNOjI4o5dNhsCSmEeGsVuFP-qXD'),
+  'Carrillera':                           driveImg('1VnDUe4fBPqwaKaUnnna-Cug4Ecs7Kur_'),
+  'Brisket':                              driveImg('1ZHJ0UzYIesjql-4tfMuTH8u4IInMDO8Y'),
+  'Back Rib':                             driveImg('12hcmsAnCaMZnnXa3r-RJauafWeW9ipVz'),
+  'Cabeza de Res sin Lengua':             driveImg('1UrUpE558a9l_t7oIYgL7NZP5ZlYgRa25'),
+  // PUERCO
+  'Pierna de Puerco sin Hueso':           driveImg('1gvXgn0hZm87CjIzjMwxmfbpYg6cHjpe1'),
+  'Mano de Puerco':                       driveImg('14brj4Hs5DiNA4y-3pVTBH3zra36KFc0h'),
+  'Lomo de Puerco':                       driveImg('1FINPf_9oPcp4EJr441BpHJlyjbwLmye5'),
+  'Espinazo':                             driveImg('1xyrtbFDsdTi6poPwR2uEm5ezxj5xqUFb'),
+  'Chuleta de Puerco c/Hueso Procesada':  driveImg('1uKrqm9gwzUcx2YCFvHMgIgmFfXGvI_1I'),
+  'Chamorro':                             driveImg('1ZWQ7Shf4oL3qZJhOGO4nBHa3eLZvb29-'),
+  'Boston':                               driveImg('1LsWapZUgolsdgQBMivMdoBfTfucx2QzP'),
+  'Cabeza de Puerco':                     driveImg('1AVg-QzjIte4Xu6AfH4BbisG9VFNyzPoy'),
+  // POLLO
+  'Pierna y Muslo':                       driveImg('1GpPjf-EL_BxOZa1HspVd3QudQwosx55E'),
+  'Pechuga de Pollo':                     driveImg('1xTqkKuTHxumz0lxSoxT4Srh47fOSpGJK'),
+  // CORTES
+  'Arrachera':                            driveImg('1qgXiEaIyZ2z_mxrUUXANGrcdd2R98vj8'),
+  'Filete':                               driveImg('1vMARHFP-I38dp9qgjfSSy_RY7JagW-Hz'),
+  'Picaña':                               driveImg('1DZLRxDFVvfz5fQbLeFSfAIBZt2J-A7A9'),
+  'Porter House':                         driveImg('1Ur8Znu3X0ujBk0sKH7S3npcc4EkpX798'),
+  'Prime Rib':                            driveImg('1COQCmOE_6m_VEPF8v4fHPm_mrj8k80Wr'),
+  'Rib Eye':                              driveImg('1GIMW9gPebOtpJSAclb-VxNJ9X1ULVc6x'),
+  'Sirloin':                              driveImg('1wjvBzh2P3uMsU2yRNOgfItQBb0p_X4pc'),
+  'Tomahawk':                             driveImg('1GjSZJH8uAi3sj5nawnrSM-E7hNdt13H3'),
+  // EMBUTIDOS
+  'Jamón':                                driveImg('1qhUdklKeLZWCJVaPyGXX7BH9-Hf25Id4'),
+  'Manteca de Puerco':                    driveImg('1tPr2syihGAq0eJvSxDIn6osRfafsDyd-'),
+  'Queso Menonita':                       driveImg('1MkbSEnXZNKxPHUD1lgFn9fXQK6giTrYi'),
+  'Salchicha':                            driveImg('1H0To62szb87hw8LyYoynHZg82u99n8ry'),
+  'Tocino':                               driveImg('1mZyfbcoct0x2pzdaJidFEz9b1Ya883pz'),
+  // COCIDOS
+  'Barbacoa':                             driveImg('1BoAlqmdHAiIFAiW7s4HSnV07XiLtO9Nq'),
+  'Buche Cocido':                         driveImg('1WYxAqKYOvucnZ7SE--zIEy8T_6oph9ps'),
+  'Deshebrada Cocida':                    driveImg('1-1FmqiMGXJPJfWII4vnRzBJEmVKL-haw'),
+  // VÍSCERAS
+  'Buche':                                driveImg('1Gv0ZhipVeZU3P7BBeDwV4KpnrFnXy1VZ'),
+  'Cachete':                              driveImg('1Lli6t2PQxDENOnH1a3ICzorkOB7700UB'),
+  'Hígado':                               driveImg('1wB6km5UVgjLKNlag9KO606y0XnlEqZWA'),
+  'Labio':                                driveImg('1bn95yLfo5Bb-uh_j7a0z_XvtqI1t3AXO'),
+  'Menudo':                               driveImg('15AEbKdkMWLG8X1jHmAt4XZhNp42WyJTy'),
+  'Tripa Cruda':                          driveImg('1QLPZqK_I-iheyMaRnXspXe0Kut1I4EiD'),
+  // PAQUETES
+  'Paquete Carrillera':                   driveImg('1d5wSIuou0Ly2vDJc-4ekxcfSmmxwYKxk'),
+  'Paquete Ch. Costilla':                 driveImg('1AvXSmkvqR-AIS445T9reQe8HUUz3W7NX'),
+  'Paquete Chuck para Asar':              driveImg('1hXFcQqFw_rDZJH4W8H6kXnenEuD8cSpi'),
+  'Paquete Discada':                      driveImg('1pbfetA7Qx0BYjZPA6xCBc68ppKYRSzoq'),
+  'Paquete Hamburguesa':                  driveImg('11g5-Hl4b3hSRH7Pzu6ymv5yU4mulQjFu'),
+  'Paquete Pastor':                       driveImg('1saBSjEJZlMCVb_tnpBdh9CNAaYlvq6Lo'),
+  'Paquete Rib Eye':                      driveImg('10Pi3BKq1Yo7t1552Eisdq2K_EoK7uZxZ'),
+  'Paquete Sirloin':                      driveImg('1D-KidzCmeEwvqR-X0Sv9Md0PF31MBRGQ'),
+}
+
 const catalog = [
   {
     id: 'res',
@@ -23,7 +83,7 @@ const catalog = [
   {
     id: 'puerco',
     label: 'Puerco',
-    image: null,
+    image: driveImg('1AVg-QzjIte4Xu6AfH4BbisG9VFNyzPoy'),
     items: [
       'Pierna de Puerco sin Hueso', 'Pierna de Puerco con Hueso', 'Mano de Puerco',
       'Lomo de Puerco', 'Lomo Ahumado', 'Espinazo', 'Costilla San Louis',
@@ -34,13 +94,13 @@ const catalog = [
   {
     id: 'pollo',
     label: 'Pollo',
-    image: null,
+    image: driveImg('1xTqkKuTHxumz0lxSoxT4Srh47fOSpGJK'),
     items: ['Pierna y Muslo', 'Pechuga de Pollo'],
   },
   {
     id: 'cortes',
     label: 'Cortes',
-    image: driveImg('17Y6B634z41HkNPID9ldSI1jdlFKzNYvW'),
+    image: driveImg('1qgXiEaIyZ2z_mxrUUXANGrcdd2R98vj8'),
     items: [
       'Arrachera', 'Filete', 'New York', 'Picaña', 'Porter House',
       'Prime Rib', 'Rib Eye', 'Sirloin', 'Tomahawk',
@@ -49,25 +109,25 @@ const catalog = [
   {
     id: 'embutidos',
     label: 'Embutidos',
-    image: null,
+    image: driveImg('1qhUdklKeLZWCJVaPyGXX7BH9-Hf25Id4'),
     items: ['Chorizo', 'Jamón', 'Manteca de Puerco', 'Queso Menonita', 'Salchicha', 'Tocino'],
   },
   {
     id: 'cocidos',
     label: 'Cocidos',
-    image: null,
+    image: driveImg('1BoAlqmdHAiIFAiW7s4HSnV07XiLtO9Nq'),
     items: ['Barbacoa', 'Buche Cocido', 'Ch. Prensado', 'Deshebrada Cocida', 'Tripa Cocida'],
   },
   {
     id: 'visceras',
     label: 'Vísceras',
-    image: null,
+    image: driveImg('1wB6km5UVgjLKNlag9KO606y0XnlEqZWA'),
     items: ['Buche', 'Cachete', 'Hígado', 'Labio', 'Lengua', 'Menudo', 'Pata de Res', 'Tripa Cruda'],
   },
   {
     id: 'paquetes',
     label: 'Paquetes',
-    image: null,
+    image: driveImg('1WL1iJeV3nf9Ik-wGy2a3vnY9wGja1iqO'),
     items: [
       'Paquete Carrillera', 'Paquete Ch. Costilla', 'Paquete Chuck para Asar',
       'Paquete Discada', 'Paquete Hamburguesa', 'Paquete Pastor',
@@ -181,11 +241,19 @@ export default function Productos() {
               <span className="productos__cat-count">{cat.items.length} productos</span>
             </div>
             <div className="productos__grid">
-              {cat.items.map((item, i) => (
-                <div className="productos__item" key={i}>
-                  <span className="productos__item-name">{item}</span>
-                </div>
-              ))}
+              {cat.items.map((item, i) => {
+                const img = productImages[item]
+                return (
+                  <div className={`productos__item${img ? ' productos__item--has-img' : ''}`} key={i}>
+                    {img && (
+                      <div className="productos__item-img">
+                        <img src={img} alt={item} loading="lazy" />
+                      </div>
+                    )}
+                    <span className="productos__item-name">{item}</span>
+                  </div>
+                )
+              })}
             </div>
           </div>
         ))}

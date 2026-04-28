@@ -27,7 +27,7 @@ export default function IntroVideo() {
         const showP  = Math.min(1, Math.max(0, (p - 0.15) / 0.20))
         const colP   = Math.min(1, Math.max(0, (p - 0.82) / 0.14))
         const logoOp = showP * (1 - colP)
-        const logoSc = 0.2 + showP * 0.8 - colP * 0.9
+        const logoSc = 0.2 + showP * 1.1 - colP * 1.15
 
         logoStage.style.opacity   = logoOp.toFixed(3)
         logoStage.style.transform = `scale(${Math.max(0.05, logoSc).toFixed(3)})`

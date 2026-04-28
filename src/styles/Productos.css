@@ -192,6 +192,38 @@
   color: rgba(255,255,255,0.9);
 }
 
+/* Item with photo */
+.productos__item--has-img {
+  padding: 0;
+  overflow: hidden;
+}
+
+.productos__item--has-img .productos__item-name {
+  display: block;
+  padding: 10px 14px;
+}
+
+.productos__item-img {
+  height: 110px;
+  overflow: hidden;
+}
+
+.productos__item-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.productos__item--has-img:hover .productos__item-img img {
+  transform: scale(1.06);
+}
+
+@media (max-width: 768px) {
+  .productos__item-img { height: 90px; }
+}
+
 /* CTA */
 .productos__cta {
   text-align: center;

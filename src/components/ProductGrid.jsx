@@ -9,15 +9,15 @@ gsap.registerPlugin(ScrollTrigger)
 const driveImg = (id) => `https://drive.google.com/thumbnail?id=${id}&sz=w800`
 
 const products = [
-  { id: 1, name: 'Rib Eye',           tagline: 'Corte Premium · Marmoleado',    image: driveImg('1SeIwD3fttPDcodYRgYPJaBxxDwLPC17h') },
-  { id: 2, name: 'Tripa Cocida',      tagline: 'Cocidos · Juarense',            image: '/images/fotos/dsc0025-web.jpg' },
-  { id: 3, name: 'Carrizo',           tagline: 'Res · Tradicional',             image: '/images/fotos/dsc0014-web.jpg' },
-  { id: 4, name: 'Puerco sin Hueso',  tagline: 'Puerco · Versátil',             image: '/images/fotos/dsc0001-web.jpg' },
-  { id: 5, name: 'Pulpa Molida',      tagline: 'Res · Fresca',                  image: '/images/fotos/dsc0019-web.jpg' },
-  { id: 6, name: 'Pechuga de Pollo',  tagline: 'Pollo · Ligero',                image: '/images/fotos/dsc0025-web.jpg' },
-  { id: 7, name: 'Paquete T-Bone',    tagline: 'Paquete · Para asar',           image: driveImg('1KeWbwK3DdFlDvc2wBkYhXKQC2zd-4IGZ') },
-  { id: 8, name: 'Deshebrada Cocida', tagline: 'Cocidos · Lista para tacos',    image: '/images/fotos/dsc0014-web.jpg' },
-  { id: 9, name: 'Hígado',            tagline: 'Vísceras · Nutritivo',          image: '/images/fotos/dsc0001-web.jpg' },
+  { id: 1, name: 'Rib Eye',           tagline: 'Corte Premium · Marmoleado',    image: driveImg('1GIMW9gPebOtpJSAclb-VxNJ9X1ULVc6x') },
+  { id: 2, name: 'Tripa Cocida',      tagline: 'Cocidos · Juarense',            image: driveImg('1qj4bKGcqAJU-KEUX-yg58bdLf9hZNO7v') },
+  { id: 3, name: 'Carrizo',           tagline: 'Res · Tradicional',             image: driveImg('16yvHtiQ3VIIGRmFl9Y2Gx_b2Y49w8r5z') },
+  { id: 4, name: 'Puerco sin Hueso',  tagline: 'Puerco · Versátil',             image: driveImg('1gvXgn0hZm87CjIzjMwxmfbpYg6cHjpe1') },
+  { id: 5, name: 'Pulpa Molida',      tagline: 'Res · Fresca',                  image: driveImg('1AYTkNIm5nfgZFeTK1CiSiUcOtxWQRXRr') },
+  { id: 6, name: 'Pechuga de Pollo',  tagline: 'Pollo · Ligero',                image: driveImg('1xTqkKuTHxumz0lxSoxT4Srh47fOSpGJK') },
+  { id: 7, name: 'Paquete T-Bone',    tagline: 'Paquete · Para asar',           image: driveImg('1WL1iJeV3nf9Ik-wGy2a3vnY9wGja1iqO') },
+  { id: 8, name: 'Deshebrada Cocida', tagline: 'Cocidos · Lista para tacos',    image: driveImg('1-1FmqiMGXJPJfWII4vnRzBJEmVKL-haw') },
+  { id: 9, name: 'Hígado',            tagline: 'Vísceras · Nutritivo',          image: driveImg('1wB6km5UVgjLKNlag9KO606y0XnlEqZWA') },
 ]
 
 export default function ProductGrid() {
