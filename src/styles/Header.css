@@ -188,3 +188,39 @@
     justify-content: space-between;
   }
 }
+
+/* ── Hero transparent state ──────────────────────── */
+
+.header--hero {
+  background: linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, transparent 100%);
+  border-bottom-color: transparent;
+  box-shadow: none;
+}
+
+.header--hero .header-nav a {
+  color: rgba(255, 255, 255, 0.88);
+  border-bottom-color: transparent;
+}
+
+.header--hero .header-nav a:hover,
+.header--hero .header-nav a.is-active {
+  color: #fff;
+  border-bottom-color: rgba(255, 255, 255, 0.7);
+}
+
+.header--hero .logo-img {
+  /* JPG has white bg — show as-is, gradient header gives enough contrast */
+}
+
+.header--hero .header-hamburger span {
+  background: #fff;
+}
+
+.header--hero .btn-cta {
+  background: rgba(176, 0, 11, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.header--hero .btn-cta:hover {
+  background: #B0000B;
+}

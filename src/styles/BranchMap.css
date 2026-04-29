@@ -1,11 +1,14 @@
 .branches {
-  color: #fff;
+  position: relative;
 }
 
-/* Foto fija con todo encima */
+/* ── Photo wrap ──────────────────────────────────── */
+
 .branches__photo-wrap {
   position: relative;
-  min-height: 680px;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
   overflow: hidden;
 }
 
@@ -22,134 +25,119 @@
 .branches__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.35) 0%,
-    rgba(0,0,0,0.65) 50%,
-    rgba(0,0,0,0.82) 100%
-  );
+  background: rgba(0,0,0,0.58);
+  z-index: 1;
 }
 
-/* Todo el contenido flotando sobre la foto */
+/* ── Content over photo ──────────────────────────── */
+
 .branches__content {
   position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: clamp(48px, 7vw, 96px) clamp(24px, 5vw, 72px) clamp(48px, 6vw, 80px);
-  gap: 40px;
+  z-index: 2;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: clamp(60px, 8vw, 100px) clamp(24px, 5vw, 60px);
 }
 
-/* Intro */
 .branches__intro {
+  max-width: 600px;
+  margin: 0 auto 40px;
   text-align: center;
-  max-width: 680px;
 }
 
 .branches__eyebrow {
   font-family: 'Montserrat', system-ui, sans-serif;
   font-size: 11px;
   font-weight: 500;
-  letter-spacing: 0.5em;
+  letter-spacing: 0.4em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.65);
-  margin-bottom: 12px;
+  color: #B0000B;
+  margin: 0 0 16px;
 }
 
 .branches__title {
-  font-family: 'Montserrat', system-ui, sans-serif;
-  font-weight: 900;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 300;
   font-style: italic;
-  font-size: clamp(36px, 5.5vw, 72px);
-  line-height: 0.96;
-  letter-spacing: -0.025em;
-  text-transform: uppercase;
-  margin: 0 0 14px;
+  font-size: clamp(44px, 5vw, 80px);
+  line-height: 1.05;
   color: #fff;
+  margin: 0 0 16px;
 }
 
-.branches__accent { color: #B0000B; }
+.branches__accent {
+  color: #B0000B;
+}
 
 .branches__lead {
   font-family: 'Montserrat', system-ui, sans-serif;
-  font-size: clamp(13px, 1.2vw, 16px);
-  color: rgba(255,255,255,0.72);
+  font-size: 15px;
+  color: rgba(255,255,255,0.7);
   line-height: 1.6;
+  margin: 0;
 }
 
-/* Grid 3x2 sobre la foto */
+/* ── Branch cards grid ───────────────────────────── */
+
 .branches__grid {
-  width: 100%;
-  max-width: 900px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
+  max-width: 680px;
+  margin: 0 auto 32px;
 }
 
 .branch-card {
-  padding: 20px 22px;
   background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.15);
   border-radius: 6px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transition: background 0.25s, border-color 0.25s, transform 0.25s;
-  cursor: default;
-  text-align: center;
+  padding: 16px 20px;
+  transition: background 200ms ease, border-color 200ms ease;
 }
 
 .branch-card:hover {
-  background: rgba(176,0,11,0.25);
-  border-color: rgba(176,0,11,0.55);
-  transform: translateY(-3px);
+  background: rgba(176,0,11,0.18);
+  border-color: rgba(176,0,11,0.4);
 }
 
 .branch-card__name {
   font-family: 'Montserrat', system-ui, sans-serif;
-  font-weight: 700;
-  font-size: clamp(13px, 1.3vw, 16px);
-  letter-spacing: 0.01em;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.9);
   margin: 0;
-  color: #fff;
 }
 
-/* CTA */
-.branches__cta {
-  text-align: center;
-}
+/* ── CTA ─────────────────────────────────────────── */
+
+.branches__cta { margin-top: 8px; text-align: center; }
 
 .branches__btn {
   display: inline-block;
-  padding: 13px 32px;
-  background: transparent;
-  border: 1.5px solid rgba(255,255,255,0.45);
-  border-radius: 4px;
-  color: #fff;
   font-family: 'Montserrat', system-ui, sans-serif;
   font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.04em;
-  transition: background 0.2s, border-color 0.2s;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  padding-bottom: 4px;
+  transition: color 200ms ease, border-color 200ms ease;
 }
 
 .branches__btn:hover {
-  background: #B0000B;
-  border-color: #B0000B;
+  color: #fff;
+  border-color: rgba(255,255,255,0.7);
 }
 
-@media (max-width: 640px) {
-  .branches__photo-wrap {
-    min-height: 560px;
-  }
+/* ── Mobile ──────────────────────────────────────── */
 
-  .branches__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 400px) {
-  .branches__grid {
-    grid-template-columns: 1fr;
-  }
+@media (max-width: 768px) {
+  .branches__photo-wrap { min-height: 520px; }
+  .branches__grid { grid-template-columns: 1fr 1fr; }
+  .branches__title { font-size: clamp(38px, 10vw, 56px); }
 }

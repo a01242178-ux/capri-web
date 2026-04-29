@@ -1,6 +1,6 @@
 .hero {
   position: relative;
-  min-height: 88vh;
+  min-height: 100vh;
   display: flex;
   align-items: flex-end;
   overflow: hidden;
@@ -118,7 +118,7 @@
 /* ── Mobile ──────────────────────────────────────── */
 
 @media (max-width: 768px) {
-  .hero { min-height: 75vh; }
+  .hero { min-height: 100svh; }
   .hero__title { font-size: clamp(44px, 12vw, 70px); }
   .hero__sub { font-size: 14px; max-width: 100%; }
 }

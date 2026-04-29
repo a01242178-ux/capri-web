@@ -54,7 +54,20 @@ export default function Timeline() {
       })
     })
 
-    return () => mm.revert()
+    // Spine width: cubre todo el contenido scrolleable, no solo el área visible
+    const updateSpineWidth = () => {
+      if (!spine || !track) return
+      const leftPad = parseFloat(getComputedStyle(track).paddingLeft) || 60
+      spine.style.right = 'auto'
+      spine.style.width = `${track.scrollWidth - leftPad * 2}px`
+    }
+    updateSpineWidth()
+    window.addEventListener('resize', updateSpineWidth)
+
+    return () => {
+      mm.revert()
+      window.removeEventListener('resize', updateSpineWidth)
+    }
   }, [])
 
   return (
@@ -68,6 +81,7 @@ export default function Timeline() {
           muted
           loop
           playsInline
+          preload="metadata"
           disableRemotePlayback
           aria-hidden="true"
         />
@@ -77,7 +91,10 @@ export default function Timeline() {
       <div className="timeline__intro">
         <div className="timeline__eyebrow">Desde 1960</div>
         <h2 className="timeline__title">
-          Más de <span className="timeline__accent">60 años</span><br />de tradición
+          <span className="timeline__title-serif">Más de </span>
+          <span className="timeline__accent">60 años</span>
+          <br />
+          <span className="timeline__title-serif">de tradición</span>
         </h2>
         <p className="timeline__lead">
           Cuatro generaciones dedicadas a llevar la mejor carne a las familias juarenses.

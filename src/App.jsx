@@ -11,11 +11,17 @@ import Productos from './components/Productos'
 import Sucursales from './components/Sucursales'
 import Blog from './components/Blog'
 import Footer from './components/Footer'
+import PreFooterCTA from './components/PreFooterCTA'
 import WhatsAppButton from './components/WhatsAppButton'
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('inicio')
   const [introDone, setIntroDone] = useState(false)
+
+  const handleIntroDone = () => {
+    setIntroDone(true)
+    window.scrollTo({ top: 0, behavior: 'instant' })
+  }
 
   // Scroll to top on every page change
   useEffect(() => {
@@ -31,8 +37,8 @@ export default function App() {
 
   return (
     <div className="app">
-      {!introDone && (
-        <IntroVideo onComplete={() => setIntroDone(true)} />
+      {currentPage === 'inicio' && !introDone && (
+        <IntroVideo onComplete={handleIntroDone} />
       )}
 
       <Header currentPage={currentPage} setCurrentPage={setCurrentPage} />
@@ -44,6 +50,7 @@ export default function App() {
           <ProductGrid />
           <BranchMap />
           <Historia />
+          <PreFooterCTA />
           <Footer />
         </>
       )}
@@ -51,6 +58,7 @@ export default function App() {
       {currentPage === 'quienes-somos' && (
         <>
           <QuienesSomos />
+          <PreFooterCTA />
           <Footer />
         </>
       )}
@@ -58,6 +66,7 @@ export default function App() {
       {currentPage === 'productos' && (
         <>
           <Productos />
+          <PreFooterCTA />
           <Footer />
         </>
       )}
@@ -65,6 +74,7 @@ export default function App() {
       {currentPage === 'sucursales' && (
         <>
           <Sucursales />
+          <PreFooterCTA />
           <Footer />
         </>
       )}
@@ -72,6 +82,7 @@ export default function App() {
       {currentPage === 'blog' && (
         <>
           <Blog />
+          <PreFooterCTA />
           <Footer />
         </>
       )}

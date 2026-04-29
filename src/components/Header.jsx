@@ -4,6 +4,7 @@ import '../styles/Header.css'
 export default function Header({ currentPage, setCurrentPage }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const isHero = currentPage === 'inicio' && !scrolled
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80)
@@ -23,6 +24,15 @@ export default function Header({ currentPage, setCurrentPage }) {
     setMenuOpen(false)
   }
 
+  const openApp = () => {
+    const ua = navigator.userAgent || ''
+    if (/iPhone|iPad|iPod/i.test(ua)) {
+      window.open('https://apps.apple.com/mx/app/capri-carnes/id6748863568', '_blank', 'noopener,noreferrer')
+    } else {
+      window.open('https://wa.me/526562191234?text=Hola%20Capri%20Carnes%2C%20quiero%20ordenar', '_blank', 'noopener,noreferrer')
+    }
+  }
+
   const navLinks = [
     { label: 'Inicio',           id: 'inicio' },
     { label: '¿Quiénes Somos?',  id: 'quienes-somos' },
@@ -33,7 +43,7 @@ export default function Header({ currentPage, setCurrentPage }) {
 
   return (
     <>
-      <header className={`header${scrolled ? ' header--scrolled' : ''}`}>
+      <header className={`header${scrolled ? ' header--scrolled' : ''}${isHero ? ' header--hero' : ''}`}>
         <div className="header-container">
           <div className="header-logo" onClick={() => navigate('inicio')} style={{ cursor: 'pointer' }}>
             <img src="/images/capri-logo.jpg" alt="Capri Carnes" className="logo-img" />
@@ -55,7 +65,7 @@ export default function Header({ currentPage, setCurrentPage }) {
           <div className="header-right">
             <button
               className="btn btn-cta"
-              onClick={() => window.open('https://wa.me/526562191234?text=Hola%20Capri%20Carnes%2C%20quiero%20ordenar', '_blank', 'noopener,noreferrer')}
+              onClick={openApp}
             >
               Ordena Aquí
             </button>
@@ -85,10 +95,7 @@ export default function Header({ currentPage, setCurrentPage }) {
           ))}
           <button
             className="btn btn-cta header-mobile-cta"
-            onClick={() => {
-              window.open('https://wa.me/526562191234?text=Hola%20Capri%20Carnes%2C%20quiero%20ordenar', '_blank', 'noopener,noreferrer')
-              setMenuOpen(false)
-            }}
+            onClick={() => { openApp(); setMenuOpen(false) }}
           >
             Ordena Aquí
           </button>

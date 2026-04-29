@@ -140,6 +140,62 @@
   min-height: 140px;
 }
 
+/* Canales: centrar para que luzca la carne */
+.qs__canales-img {
+  object-position: center 55% !important;
+}
+
+/* Extra image wrappers (ganadería — caballo + canales) */
+.qs__extra-img-wrap {
+  position: relative;
+  overflow: hidden;
+  min-height: 140px;
+}
+
+.qs__extra-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  min-height: 140px;
+  transition: transform 0.6s ease;
+}
+
+.qs__extra-img-wrap:hover img {
+  transform: scale(1.05);
+}
+
+.qs__extra-img-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px 18px 16px;
+  background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.qs__extra-img-label {
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: #B0000B;
+}
+
+.qs__extra-img-caption {
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+  margin: 0;
+}
+
 /* App badges */
 .qs__app-badges {
   display: flex;
@@ -187,6 +243,25 @@
 
   .qs__chapter-text {
     padding: 36px 24px;
+  }
+
+  /* Ganadería: apila las 3 fotos verticalmente en mobile */
+  .qs__chapter-visual--multi {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .qs__chapter-visual--multi img:first-child {
+    grid-column: unset;
+    min-height: 260px;
+  }
+
+  .qs__chapter-visual--multi img,
+  .qs__extra-img-wrap,
+  .qs__extra-img-wrap img {
+    min-height: 200px;
+    width: 100%;
   }
 }
 

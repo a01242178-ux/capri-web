@@ -1,11 +1,12 @@
 import { useEffect, useRef } from 'react'
 import './IntroVideo.css'
 
-export default function IntroVideo() {
-  const wrapperRef  = useRef(null)
-  const stickyRef   = useRef(null)
+export default function IntroVideo({ onComplete }) {
+  const wrapperRef   = useRef(null)
+  const stickyRef    = useRef(null)
   const logoStageRef = useRef(null)
-  const bottomRef   = useRef(null)
+  const bottomRef    = useRef(null)
+  const completedRef = useRef(false)
 
   useEffect(() => {
     const wrapper    = wrapperRef.current
@@ -21,6 +22,11 @@ export default function IntroVideo() {
       const rect       = wrapper.getBoundingClientRect()
       const scrollable = rect.height - window.innerHeight
       const p          = Math.min(1, Math.max(0, -rect.top / Math.max(1, scrollable)))
+
+      if (p >= 0.97 && onComplete && !completedRef.current) {
+        completedRef.current = true
+        onComplete()
+      }
 
       // Logo inner: appears p 0.15→0.35, stays, collapses p 0.82→0.96
       if (logoStage) {
@@ -60,7 +66,7 @@ export default function IntroVideo() {
       <div ref={stickyRef} className="intro-video__sticky">
         <video
           className="intro-video__media"
-          src="/videos/capri.mp4"
+          src="/videos/capri-web.mp4"
           autoPlay
           muted
           loop

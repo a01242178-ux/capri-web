@@ -7,16 +7,16 @@ export default function Footer() {
         <div className="footer__brand">
           <img src="/images/capri-logo.jpg" alt="Capri Carnes" className="footer__logo" />
           <p className="footer__tagline">
-            Desde 1960. Tres generaciones ofreciendo la mejor carne a las familias de Ciudad Juárez.
+            Desde 1960. Cuatro generaciones ofreciendo la mejor carne a las familias de Ciudad Juárez.
           </p>
         </div>
 
         <div className="footer__cols">
           <div className="footer__col">
             <h4>Navegar</h4>
-            <a href="#timeline">Nosotros</a>
-            <a href="#products">Productos</a>
-            <a href="#branches">Sucursales</a>
+            <a href="#" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent('capri:navigate', { detail: 'quienes-somos' })) }}>Nosotros</a>
+            <a href="#" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent('capri:navigate', { detail: 'productos' })) }}>Productos</a>
+            <a href="#" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent('capri:navigate', { detail: 'sucursales' })) }}>Sucursales</a>
           </div>
 
           <div className="footer__col">

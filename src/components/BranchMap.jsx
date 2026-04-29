@@ -47,7 +47,6 @@ export default function BranchMap() {
   return (
     <section ref={sectionRef} className="branches" id="branches">
 
-      {/* Foto EJERCITO con overlay + texto + cards encima */}
       <div className="branches__photo-wrap">
         <img
           src={driveImg('1k57CejUWkZa1JYZclFuyT_RUD3YMoW-Q')}

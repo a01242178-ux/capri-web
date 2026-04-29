@@ -74,6 +74,19 @@ export default function Sucursales() {
         </div>
       </div>
 
+      <div className="sucursales__map">
+        <iframe
+          src="https://maps.google.com/maps?q=Capri+Carnes+Ciudad+Juarez+Chihuahua+Mexico&output=embed&hl=es"
+          width="100%"
+          height="100%"
+          style={{ border: 0 }}
+          allowFullScreen=""
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          title="Sucursales Capri Carnes en Ciudad Juárez"
+        />
+      </div>
+
       <div className="sucursales__content">
         <div className="sucursales__grid">
           {branches.map(b => (

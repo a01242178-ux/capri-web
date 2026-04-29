@@ -188,35 +188,49 @@ export default function Productos() {
         />
       </div>
 
-      <div className="productos__hero-text">
-        <p className="productos__eyebrow">Catálogo Completo</p>
-        <h2 className="productos__headline">
-          Buscamos lo mejor<br />
-          <span className="productos__accent">de la región.</span>
-        </h2>
+      <div className="productos__hero-wrap">
+        <video
+          className="productos__hero-video"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="none"
+          disableRemotePlayback
+          aria-hidden="true"
+        >
+          <source src="/videos/vitrina-productos-web.mp4" type="video/mp4" />
+        </video>
+        <div className="productos__hero-overlay" aria-hidden="true" />
+        <div className="productos__hero-text">
+          <p className="productos__eyebrow">Catálogo Completo</p>
+          <h2 className="productos__headline">
+            Buscamos lo mejor<br />
+            <span className="productos__accent">de la región.</span>
+          </h2>
+        </div>
       </div>
 
-      <div className="productos__region">
-        <div className="productos__region-inner">
-          <div className="productos__region-photo">
-            <img
-              src={driveImg('1jeFxxD6wr2y2lmvRzdRQYy7oSqGuyP1v')}
-              alt="Canales Capri — Selección de ganadería"
-              loading="lazy"
-            />
-          </div>
-          <div className="productos__region-text">
-            <p>
-              En Capri Carnes sabemos que la calidad empieza mucho antes de la vitrina.
-              Por eso trabajamos de la mano con ganaderos del norte de Chihuahua y la zona fronteriza,
-              gente que conoce el oficio de generación en generación.
-            </p>
-            <p>
-              Aquí no improvisamos: seleccionamos cada animal con cuidado, respaldando la tradición ganadera
-              de una región donde hacer las cosas bien es la norma.
-              Cuando compras con nosotros, llevas a tu mesa el resultado de esa disciplina y respeto por la tierra.
-            </p>
-          </div>
+      <div className="productos__canales">
+        <img
+          src={driveImg('1jeFxxD6wr2y2lmvRzdRQYy7oSqGuyP1v')}
+          alt="Canales Capri — Selección de ganadería"
+          className="productos__canales-img"
+          loading="lazy"
+        />
+        <div className="productos__canales-overlay" aria-hidden="true" />
+        <div className="productos__canales-text">
+          <p>
+            En Capri Carnes sabemos que la calidad empieza mucho antes de la vitrina.
+            Trabajamos de la mano con ganaderos del norte de Chihuahua y la zona fronteriza —
+            gente que conoce el oficio de generación en generación.
+          </p>
+          <p>
+            Seleccionamos cada animal con cuidado, respaldando la tradición ganadera
+            de una región donde hacer las cosas bien es la norma.
+            Cuando compras con nosotros, llevas a tu mesa el resultado de esa disciplina
+            y respeto por la tierra.
+          </p>
         </div>
       </div>
 

@@ -6,9 +6,14 @@
   --color-red-capri: #B0000B;
   --color-mustard: #D7C400;
 
+  /* Colors — extended */
+  --color-cream: #FAF5EF;
+  --color-cream-dark: #F2EBE0;
+
   /* Typography */
   --font-primary: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-heading: 'Montserrat', system-ui, sans-serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
 
   /* Spacing */
   --spacing-xs: 8px;

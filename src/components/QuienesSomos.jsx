@@ -14,8 +14,9 @@ const chapters = [
     label: 'Primera Generación',
     title: 'Don Antonio García Villanueva',
     body: [
-      'Todo empezó con Don Antonio García Villanueva en el Mercado Juárez, Ciudad Juárez, Chihuahua. Una carnicería pequeña, de barrio, con el compromiso de ofrecer siempre lo mejor.',
-      'A los 21 años, Don Antonio tomó las riendas del negocio familiar y comenzó la expansión que definiría el futuro de Capri Carnes. Su visión: llevar calidad a cada rincón de la ciudad.',
+      'Todo empezó con Don Antonio García Villanueva en el Mercado Juárez de Ciudad Juárez, Chihuahua. En una época donde la carne era sinónimo de celebración y de mesa bien puesta, Don Antonio entendió que su oficio iba más allá de vender: era alimentar a una comunidad.',
+      'Con apenas 21 años tomó las riendas del negocio familiar. Sin tecnología, sin cadenas de frío modernas — solo con el conocimiento artesanal heredado y la determinación de quien sabe lo que vale. Esa primera carnicería de barrio fue la semilla de todo lo que vendría.',
+      'El trato personal con cada cliente, el cuidado al elegir cada pieza, la honestidad en el peso y en el precio. Esos fueron los pilares que Don Antonio plantó, y que hoy, más de 60 años después, siguen siendo el ADN de Capri Carnes.',
     ],
     image: driveImg('1yGTEFtEwAjpBQEZMPAdxy31noc_Q6XZR'),
     imageAlt: 'Don Antonio García Villanueva — Fundador de Capri Carnes',
@@ -25,8 +26,9 @@ const chapters = [
     label: 'El Nombre que Nos Define',
     title: 'La Terraza Social Capri',
     body: [
-      'En los años 60, nuestra sucursal más emblemática tenía dos pisos. El segundo se llamaba "La Terraza Social Capri" — donde tocaban las mejores orquestas de México.',
-      'La gente empezó a llamarla "la carnicería Capri". Ese nombre se quedó grabado en la memoria colectiva de Juárez. En 1998 se volvió oficial para todas las sucursales: un legado nacido de la música, la carne y el orgullo juarense.',
+      'En los años 60, Ciudad Juárez vivía su edad dorada. La ciudad era bulliciosa, fronteriza, llena de vida nocturna y orgullo regional. En ese contexto nació nuestra sucursal más emblemática: un local de dos pisos donde el primero era carnicería y el segundo era un salón de baile.',
+      'Al segundo piso le llamaban "La Terraza Social Capri". Ahí tocaban algunas de las mejores orquestas de México — música en vivo, baile, y abajo, la mejor carne de la ciudad. Era el lugar donde la gente se reunía, y ese espíritu de encuentro quedó grabado en nuestro nombre para siempre.',
+      'Con el tiempo, los juarenses empezaron a llamar a nuestra carnicería simplemente "la Capri". El nombre pegó, se transmitió de generación en generación, hasta que en 1998 lo oficializamos para todas nuestras sucursales. Un legado nacido de la música, la carne y el orgullo juarense.',
     ],
     image: '/images/historia/capri-neon.jpeg',
     imageAlt: 'Letrero neón Capri — La Terraza Social, Ciudad Juárez años 60',
@@ -37,8 +39,9 @@ const chapters = [
     label: 'Crecimiento',
     title: 'Juárez Entera Nos Conoce',
     body: [
-      'Durante décadas, Capri Carnes fue creciendo sucursal a sucursal, zona a zona. Desde el centro histórico hasta las colonias más alejadas — siempre con la misma calidad.',
-      'Hoy contamos con más de 16 sucursales en toda la ciudad. Cada punto lleva el mismo compromiso que caracterizó a la primera carnicería.',
+      'Crecer en Ciudad Juárez no es tarea fácil. La ciudad tiene carácter propio — es exigente, directa, y su gente sabe distinguir lo auténtico de lo que no lo es. Capri Carnes creció exactamente así: sin atajos, sucursal a sucursal, zona a zona.',
+      'Fuimos llegando a cada colonia con el mismo producto y el mismo trato. No crecimos porque sí — crecimos porque la gente nos buscaba. Cuando abríamos una nueva sucursal, ya había familias esperándonos.',
+      'Hoy contamos con más de 16 puntos en toda la ciudad. Desde el centro histórico hasta los fraccionamientos más nuevos. Cada ubicación, elegida pensando en estar cerca de quien nos necesita.',
     ],
     image: driveImg('1k57CejUWkZa1JYZclFuyT_RUD3YMoW-Q'),
     imageAlt: 'Sucursal Ejército Nacional — Capri Carnes',
@@ -48,8 +51,9 @@ const chapters = [
     label: 'Renovación 2022',
     title: 'Modernización de Sucursales',
     body: [
-      'En 2022 comenzamos una transformación profunda de nuestra infraestructura. Nuevas instalaciones, procesos más eficientes, estándares más altos — sin perder la esencia artesanal que nos define.',
-      'La sucursal Santiago Blancas fue la primera en estrenar el nuevo concepto: espaciosa, moderna, con la mejor selección de cortes de la ciudad.',
+      'En 2022 iniciamos la transformación más profunda de nuestra historia reciente. No fue solo renovar instalaciones — fue reimaginar lo que debe ser una carnicería del siglo XXI sin perder lo que nos hace únicos.',
+      'Nuevos equipos de refrigeración, procesos más eficientes, espacios más cómodos para el cliente y mejores condiciones para nuestro equipo de trabajo. La primera sucursal renovada fue Santiago Blancas: amplia, limpia, con la mejor selección de cortes que hemos tenido.',
+      'La modernización continúa. Cada nueva apertura trae los mismos estándares — calidad visible desde que entras, atención que se nota, y el mismo respeto por el producto que aprendimos desde la primera generación.',
     ],
     image: driveImg('1F4hvNOkVz4ZvW6oOw3BtiYTtmwzK0Z1S'),
     imageAlt: 'Sucursal Santiago Blancas — Capri Carnes renovada',
@@ -57,10 +61,11 @@ const chapters = [
   {
     id: 'app',
     label: '2025',
-    title: 'Nueva App de Compras',
+    title: 'La Cuarta Generación Digital',
     body: [
-      'Lanzamos la App Oficial de Capri Carnes — la forma más fácil de ordenar tus cortes favoritos. Ordena, recoge en sucursal o recíbelo a domicilio.',
-      'Disponible en App Store y Google Play.',
+      'La cuarta generación entiende que el mundo cambió. Los clientes de hoy no siempre tienen tiempo de ir a la sucursal — quieren ordenar desde su teléfono, con la certeza de que van a recibir la misma calidad de siempre.',
+      'En 2025 lanzamos la App Oficial de Capri Carnes: el catálogo completo en tu pantalla, con opción de recoger en la sucursal más cercana o recibirlo a domicilio. Más de 60 años de tradición, ahora en la palma de tu mano.',
+      'Disponible en App Store para iPhone y en Google Play para Android.',
     ],
     image: '/images/capri-logo.jpg',
     imageAlt: 'App Capri Carnes',
@@ -68,17 +73,29 @@ const chapters = [
   },
   {
     id: 'rancho',
-    label: 'Del Rancho al Mercado',
-    title: 'Ganadería y Rancho',
+    label: 'Del Rancho a tu Mesa',
+    title: 'Ganadería Chihuahuense',
     body: [
-      'En 1985 adquirimos nuestro rancho en Chihuahua, marcando el inicio de nuestra pasión por la ganadería. Hoy trabajamos de la mano con ganaderos del norte de Chihuahua y la zona fronteriza.',
-      'Seleccionamos cada animal con cuidado, respaldando la tradición ganadera de una región donde hacer las cosas bien es la norma.',
+      'En 1985 adquirimos nuestro primer rancho en el estado de Chihuahua, y con eso nació algo que va más allá del negocio: una pasión genuina por la ganadería. Chihuahua tiene una de las tradiciones ganaderas más fuertes del país, y nosotros somos parte de esa historia.',
+      'Hoy trabajamos de la mano con ganaderos del norte de Chihuahua y la zona fronteriza — gente que conoce el oficio de generación en generación, igual que nosotros. Seleccionamos cada animal con cuidado, conociendo su origen, su crianza, su proceso.',
+      'Cuando compras en Capri Carnes, no compras carne anónima. Compras el resultado de una cadena de cuidado que empieza en el campo y termina en tu mesa. Eso es lo que nos hace distintos, y lo que seguiremos defendiendo.',
     ],
     image: driveImg('1rEquuUN8FzcDsqiFdQf3Jyv5ZCgvtiGh'),
     imageAlt: 'Rancho Capri Carnes — Vacas en pasto, Chihuahua',
     extraImages: [
-      { src: driveImg('1uIodc9cZtpttp-Wo4AgzaCALk1XcA-gO'), alt: 'Arreando a caballo — Capri Carnes' },
-      { src: driveImg('14SQcoVf631y2iW06wKZ8cYWZo_I4LuC2'), alt: 'Rastro — Proceso de beneficio Capri Carnes' },
+      {
+        src: driveImg('1uIodc9cZtpttp-Wo4AgzaCALk1XcA-gO'),
+        alt: 'Arreando a caballo — Capri Carnes',
+        label: 'Ganadería',
+        caption: 'Del rancho a tu mesa',
+      },
+      {
+        src: driveImg('14SQcoVf631y2iW06wKZ8cYWZo_I4LuC2'),
+        alt: 'Canales Capri — Proceso de beneficio',
+        isCanales: true,
+        label: 'Proceso',
+        caption: 'Selección artesanal',
+      },
     ],
   },
 ]
@@ -274,7 +291,20 @@ export default function QuienesSomos() {
               <>
                 <img src={ch.image} alt={ch.imageAlt} loading="lazy" />
                 {ch.extraImages && ch.extraImages.map((ei, j) => (
-                  <img key={j} src={ei.src} alt={ei.alt} loading="lazy" />
+                  <div key={j} className="qs__extra-img-wrap">
+                    <img
+                      src={ei.src}
+                      alt={ei.alt}
+                      loading="lazy"
+                      className={ei.isCanales ? 'qs__canales-img' : undefined}
+                    />
+                    {(ei.label || ei.caption) && (
+                      <div className="qs__extra-img-overlay">
+                        {ei.label && <span className="qs__extra-img-label">{ei.label}</span>}
+                        {ei.caption && <p className="qs__extra-img-caption">{ei.caption}</p>}
+                      </div>
+                    )}
+                  </div>
                 ))}
               </>
             )}
