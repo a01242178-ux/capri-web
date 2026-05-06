@@ -1,32 +1,29 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import Grainient from './Grainient'
 import '../styles/ProductGrid.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const driveImg = (id) => `https://drive.google.com/thumbnail?id=${id}&sz=w800`
-
 const products = [
-  { id: 1, name: 'Rib Eye',           tagline: 'Corte Premium · Marmoleado',    image: driveImg('1GIMW9gPebOtpJSAclb-VxNJ9X1ULVc6x') },
-  { id: 2, name: 'Tripa Cocida',      tagline: 'Cocidos · Juarense',            image: driveImg('1qj4bKGcqAJU-KEUX-yg58bdLf9hZNO7v') },
-  { id: 3, name: 'Carrizo',           tagline: 'Res · Tradicional',             image: driveImg('16yvHtiQ3VIIGRmFl9Y2Gx_b2Y49w8r5z') },
-  { id: 4, name: 'Puerco sin Hueso',  tagline: 'Puerco · Versátil',             image: driveImg('1ZWQ7Shf4oL3qZJhOGO4nBHa3eLZvb29-') },
-  { id: 5, name: 'Pulpa Molida',      tagline: 'Res · Fresca',                  image: driveImg('1AYTkNIm5nfgZFeTK1CiSiUcOtxWQRXRr') },
-  { id: 6, name: 'Pechuga de Pollo',  tagline: 'Pollo · Ligero',                image: driveImg('1xTqkKuTHxumz0lxSoxT4Srh47fOSpGJK') },
-  { id: 7, name: 'Paquete T-Bone',    tagline: 'Paquete · Para asar',           image: driveImg('1WL1iJeV3nf9Ik-wGy2a3vnY9wGja1iqO') },
-  { id: 8, name: 'Deshebrada Cocida', tagline: 'Cocidos · Lista para tacos',    image: driveImg('1-1FmqiMGXJPJfWII4vnRzBJEmVKL-haw') },
-  { id: 9, name: 'Hígado',            tagline: 'Vísceras · Nutritivo',          image: driveImg('1wB6km5UVgjLKNlag9KO606y0XnlEqZWA') },
+  { id: 1, name: 'Rib Eye',           tagline: 'Corte Premium · Marmoleado',    image: '/images/products/ribeye.jpg' },
+  { id: 2, name: 'Tripa Cocida',      tagline: 'Cocidos · Juarense',            image: '/images/products/tripa-cocida.jpg' },
+  { id: 3, name: 'Carrizo',           tagline: 'Res · Tradicional',             image: '/images/products/carrizo.jpg' },
+  { id: 4, name: 'Puerco sin Hueso',  tagline: 'Puerco · Versátil',             image: '/images/products/puerco-sin-hueso.jpg' },
+  { id: 5, name: 'Pulpa Molida',      tagline: 'Res · Fresca',                  image: '/images/products/pulpa-molida.jpg' },
+  { id: 6, name: 'Pechuga de Pollo',  tagline: 'Pollo · Ligero',                image: '/images/products/pechuga-pollo.jpg' },
+  { id: 7, name: 'Paquete T-Bone',    tagline: 'Paquete · Para asar',           image: '/images/products/paquete-tbone.jpg' },
+  { id: 8, name: 'Deshebrada Cocida', tagline: 'Cocidos · Lista para tacos',    image: '/images/products/deshebrada-cocida.jpg' },
+  { id: 9, name: 'Hígado',            tagline: 'Vísceras · Nutritivo',          image: '/images/products/higado.jpg' },
 ]
 
 export default function ProductGrid() {
-  const sectionRef = useRef(null)
-  const gridRef = useRef(null)
+  const sectionRef  = useRef(null)
+  const gridRef     = useRef(null)
 
   useEffect(() => {
     const section = sectionRef.current
-    const grid = gridRef.current
+    const grid    = gridRef.current
     if (!section || !grid) return
 
     const mm = gsap.matchMedia()
@@ -123,29 +120,8 @@ export default function ProductGrid() {
 
   return (
     <section ref={sectionRef} className="product-grid" id="products">
-      <div className="product-grid__grainient-bg" aria-hidden="true">
-        <Grainient
-          color1="#B0000B"
-          color2="#FFFFFF"
-          color3="#000000"
-          timeSpeed={0.18}
-          colorBalance={0.53}
-          warpStrength={1.0}
-          warpFrequency={0.5}
-          warpSpeed={1.5}
-          warpAmplitude={5}
-          blendAngle={-24}
-          blendSoftness={0.05}
-          rotationAmount={500.0}
-          noiseScale={1.6}
-          grainAmount={0.09}
-          grainScale={2.0}
-          contrast={1.35}
-          gamma={1.0}
-          saturation={0.85}
-          zoom={0.95}
-        />
-      </div>
+      <div className="product-grid__grainient-bg" aria-hidden="true" />
+
       <div className="product-grid__intro">
         <div className="product-grid__eyebrow">Nuestros productos</div>
         <h2 className="product-grid__title">
