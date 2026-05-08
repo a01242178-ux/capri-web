@@ -71,7 +71,7 @@ export default function IntroVideo({ onComplete }) {
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
           disableRemotePlayback
           controls={false}
           aria-hidden="true"
@@ -97,7 +97,7 @@ export default function IntroVideo({ onComplete }) {
         {/* inner wrapper is animated by JS — keeps parent blend mode working */}
         <div ref={logoStageRef} className="intro-video__logo-inner">
           <img
-            src="/images/capri-logo.svg"
+            src="/images/capri-logo-cropped.jpg"
             alt="Capri Carnes"
             className="intro-video__logo"
             loading="eager"

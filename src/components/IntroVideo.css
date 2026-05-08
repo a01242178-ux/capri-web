@@ -126,7 +126,8 @@
   width: min(200px, 26vw);
   height: auto;
   display: block;
-  filter: contrast(1.6) saturate(1.4);
+  clip-path: inset(3% 3% 3% 3%);
+  filter: brightness(1.08) contrast(2.5) saturate(1.1);
 }
 
 /* ── Scroll cue ─────────────────────────────────── */

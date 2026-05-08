@@ -1,10 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import Grainient from './Grainient'
 import '../styles/Historia.css'
-
-const driveImg = (id) => `https://drive.google.com/thumbnail?id=${id}&sz=w1200`
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -183,29 +180,7 @@ export default function Historia() {
 
   return (
     <section ref={sectionRef} className="historia historia--grainient" id="historia">
-      <div className="historia__grainient-bg" aria-hidden="true">
-        <Grainient
-          color1="#B0000B"
-          color2="#FFFFFF"
-          color3="#000000"
-          timeSpeed={0.18}
-          colorBalance={0.53}
-          warpStrength={1.0}
-          warpFrequency={0.5}
-          warpSpeed={1.5}
-          warpAmplitude={5}
-          blendAngle={-24}
-          blendSoftness={0.05}
-          rotationAmount={500.0}
-          noiseScale={1.6}
-          grainAmount={0.1}
-          grainScale={2.0}
-          contrast={1.4}
-          gamma={1.0}
-          saturation={0.9}
-          zoom={0.95}
-        />
-      </div>
+      <div className="historia__grainient-bg" aria-hidden="true" />
 
       {/* Opening */}
       <div className="historia__opening">

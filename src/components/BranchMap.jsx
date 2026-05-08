@@ -5,8 +5,6 @@ import '../styles/BranchMap.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const driveImg = (id) => `https://drive.google.com/thumbnail?id=${id}&sz=w1400`
-
 const mainBranches = [
   { id: 1, name: 'Guadalupe Victoria' },
   { id: 2, name: 'Ejército Nacional' },
@@ -49,7 +47,7 @@ export default function BranchMap() {
 
       <div className="branches__photo-wrap">
         <img
-          src={driveImg('1k57CejUWkZa1JYZclFuyT_RUD3YMoW-Q')}
+          src="/images/branch-ejercito.jpg"
           alt="Sucursal Ejército Nacional — Capri Carnes"
           className="branches__photo"
           loading="lazy"

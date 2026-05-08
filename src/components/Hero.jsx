@@ -87,7 +87,7 @@ export default function Hero() {
       <div className="hero__bg">
         <img
           ref={imgRef}
-          src="https://drive.google.com/thumbnail?id=1SeIwD3fttPDcodYRgYPJaBxxDwLPC17h&sz=w1600"
+          src="/images/hero-ribeye.jpg"
           alt=""
           aria-hidden="true"
           loading="eager"
