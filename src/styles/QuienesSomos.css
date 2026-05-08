@@ -140,15 +140,16 @@
   min-height: 140px;
 }
 
-/* Canales: zoom 30% centrado en canales, recorta piso */
+/* Canales: encuadre en carne colgada, zoom solo en móvil */
 .qs__canales-img {
   object-position: center 25% !important;
-  transform: scale(1.3);
-  transform-origin: center 25%;
 }
 
-.qs__extra-img-wrap:hover .qs__canales-img {
-  transform: scale(1.35);
+@media (max-width: 768px) {
+  .qs__canales-img {
+    transform: scale(1.3);
+    transform-origin: center 25%;
+  }
 }
 
 /* Extra image wrappers (ganadería — caballo + canales) */
